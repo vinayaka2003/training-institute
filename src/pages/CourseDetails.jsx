@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Tilt from "react-parallax-tilt";
 import {
   Sparkles,
   Clock,
@@ -140,7 +141,7 @@ function Courses() {
         </span>
         <h1 className="courses-title">Explore Our Tech Programs</h1>
         <p className="courses-subtitle">
-          In-depth technical programs designed with modern software stacks, hands-on production code, and dedicated industry mentorship.
+          Focused programs, practical projects, and dedicated mentor support.
         </p>
       </div>
 
@@ -178,7 +179,8 @@ function Courses() {
         {filteredCourses.map((c) => {
           const isCurriculumOpen = expandedCurriculum === c.id;
           return (
-            <div key={c.id} className="course-card">
+            <Tilt key={c.id} tiltMaxAngleX={5} tiltMaxAngleY={5} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="white" glarePosition="all" borderRadius="24px">
+              <div className="course-card">
               <div>
                 <div className="card-top">
                   <span className="level-badge">{c.level}</span>
@@ -239,6 +241,7 @@ function Courses() {
                 Enroll & View Syllabus <ArrowRight size={16} />
               </button>
             </div>
+            </Tilt>
           );
         })}
       </div>

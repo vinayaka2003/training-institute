@@ -71,8 +71,7 @@
 .location-header h2 em,
 .contact-bottom h2 em {
     color: var(--accent);
-    font-family: Georgia, "Times New Roman", serif;
-    font-weight: 400;
+    font-style: normal;
 }
 
 .contact-hero-line {
@@ -282,11 +281,12 @@
     align-items: center;
 }
 
-.location-header h2 {
+.contact-page .location-header h2 {
     margin: 20px 0;
     font-size: clamp(45px, 5vw, 72px);
     line-height: 0.95;
     letter-spacing: -0.05em;
+    color: #ffffff;
 }
 
 .map-card {

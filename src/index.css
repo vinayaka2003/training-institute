@@ -1,10 +1,15 @@
 :root {
   --font-primary: 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --canvas: #f5f4ef;
+  --ink: #171717;
+  --muted: #6f706d;
+  --accent: #c6532d;
+  --line: #d9d8d1;
   
   /* Solid Palette */
-  --solid-orange: #ea580c;
-  --solid-orange-hover: #c2410c;
+  --solid-orange: #c6532d;
+  --solid-orange-hover: #a84425;
   --solid-blue: #2563eb;
   --solid-purple: #7c3aed;
   --solid-green: #16a34a;
@@ -19,17 +24,30 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   font-family: var(--font-primary);
-  color: #0f172a;
-  background-color: #ffffff;
+  color: var(--ink);
+  background-color: #020202; /* Footer bottom color to fix bounce gap */
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--canvas); /* Main page background */
+}
+
 main {
+  flex: 1;
   padding-top: 90px;
 }
 

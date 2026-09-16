@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import Tilt from "react-parallax-tilt";
 import {
   Code2,
   GraduationCap,
@@ -374,50 +375,56 @@ function Home() {
         </div>
 
         <div className="home-grid">
-          <div
-            className={`feature-card ${touchedCard === 0 ? "is-touched" : ""}`}
-            onTouchStart={() => setTouchedCard(0)}
-            onTouchEnd={() => setTouchedCard(null)}
-            onTouchCancel={() => setTouchedCard(null)}
-          >
-            <div className="feature-icon-wrapper blue">
-              <Code2 size={26} strokeWidth={2.2} />
+          <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.15} glareColor="white" glarePosition="all" borderRadius="24px">
+            <div
+              className={`feature-card ${touchedCard === 0 ? "is-touched" : ""}`}
+              onTouchStart={() => setTouchedCard(0)}
+              onTouchEnd={() => setTouchedCard(null)}
+              onTouchCancel={() => setTouchedCard(null)}
+            >
+              <div className="feature-icon-wrapper blue">
+                <Code2 size={26} strokeWidth={2.2} />
+              </div>
+              <h3 className="feature-title">Live Practical Coding</h3>
+              <p className="feature-text">
+                Work with industry-standard stacks, Git workflows, PR reviews, and live production deployments.
+              </p>
             </div>
-            <h3 className="feature-title">Live Practical Coding</h3>
-            <p className="feature-text">
-              Work with industry-standard stacks, Git workflows, PR reviews, and live production deployments.
-            </p>
-          </div>
+          </Tilt>
 
-          <div
-            className={`feature-card ${touchedCard === 1 ? "is-touched" : ""}`}
-            onTouchStart={() => setTouchedCard(1)}
-            onTouchEnd={() => setTouchedCard(null)}
-            onTouchCancel={() => setTouchedCard(null)}
-          >
-            <div className="feature-icon-wrapper purple">
-              <GraduationCap size={26} strokeWidth={2.2} />
+          <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.15} glareColor="white" glarePosition="all" borderRadius="24px">
+            <div
+              className={`feature-card ${touchedCard === 1 ? "is-touched" : ""}`}
+              onTouchStart={() => setTouchedCard(1)}
+              onTouchEnd={() => setTouchedCard(null)}
+              onTouchCancel={() => setTouchedCard(null)}
+            >
+              <div className="feature-icon-wrapper purple">
+                <GraduationCap size={26} strokeWidth={2.2} />
+              </div>
+              <h3 className="feature-title">Expert Mentorship</h3>
+              <p className="feature-text">
+                Learn directly from working software engineers with 1-on-1 code reviews and doubt clearing.
+              </p>
             </div>
-            <h3 className="feature-title">Expert Mentorship</h3>
-            <p className="feature-text">
-              Learn directly from working software engineers with 1-on-1 code reviews and doubt clearing.
-            </p>
-          </div>
+          </Tilt>
 
-          <div
-            className={`feature-card ${touchedCard === 2 ? "is-touched" : ""}`}
-            onTouchStart={() => setTouchedCard(2)}
-            onTouchEnd={() => setTouchedCard(null)}
-            onTouchCancel={() => setTouchedCard(null)}
-          >
-            <div className="feature-icon-wrapper orange">
-              <Rocket size={26} strokeWidth={2.2} />
+          <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.15} glareColor="white" glarePosition="all" borderRadius="24px">
+            <div
+              className={`feature-card ${touchedCard === 2 ? "is-touched" : ""}`}
+              onTouchStart={() => setTouchedCard(2)}
+              onTouchEnd={() => setTouchedCard(null)}
+              onTouchCancel={() => setTouchedCard(null)}
+            >
+              <div className="feature-icon-wrapper orange">
+                <Rocket size={26} strokeWidth={2.2} />
+              </div>
+              <h3 className="feature-title">Career Acceleration</h3>
+              <p className="feature-text">
+                Targeted interview prep, DSA problem solving, and direct placement opportunities with top tech teams.
+              </p>
             </div>
-            <h3 className="feature-title">Career Acceleration</h3>
-            <p className="feature-text">
-              Targeted interview prep, DSA problem solving, and direct placement opportunities with top tech teams.
-            </p>
-          </div>
+          </Tilt>
         </div>
       </section>
 
@@ -441,24 +448,26 @@ function Home() {
           ))}
         </div>
 
-        <div className="roadmap-detail-card">
-          <div>
-            <h3 className="detail-headline">{roadmapSteps[activeRoadmapStep].headline}</h3>
-            <p className="detail-desc">{roadmapSteps[activeRoadmapStep].desc}</p>
-            <div className="detail-deliverables">
-              {roadmapSteps[activeRoadmapStep].deliverables.map((d, dIdx) => (
-                <span key={dIdx} className="deliverable-pill">
-                  ✓ {d}
-                </span>
-              ))}
+        <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} perspective={1000} scale={1.01} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="white" glarePosition="all" borderRadius="24px">
+          <div className="roadmap-detail-card">
+            <div>
+              <h3 className="detail-headline">{roadmapSteps[activeRoadmapStep].headline}</h3>
+              <p className="detail-desc">{roadmapSteps[activeRoadmapStep].desc}</p>
+              <div className="detail-deliverables">
+                {roadmapSteps[activeRoadmapStep].deliverables.map((d, dIdx) => (
+                  <span key={dIdx} className="deliverable-pill">
+                    ✓ {d}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <Link to="/course-details" className="hero-primary-btn" style={{ padding: "12px 20px" }}>
+                Explore Curriculum <ArrowRight size={15} />
+              </Link>
             </div>
           </div>
-          <div style={{ textAlign: "right" }}>
-            <Link to="/course-details" className="hero-primary-btn" style={{ padding: "12px 20px" }}>
-              Explore Curriculum <ArrowRight size={15} />
-            </Link>
-          </div>
-        </div>
+        </Tilt>
       </section>
 
       {/* 5. Interactive FAQ Accordion */}

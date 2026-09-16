@@ -1,4 +1,6 @@
 import "../styles/trainers.css";
+import Tilt from "react-parallax-tilt";
+
 
 const trainers = [
   {
@@ -76,7 +78,7 @@ const skills = [
 
 function Trainers() {
   return (
-    <main className="trainers-page">
+    <div className="trainers-page">
 
       {/* HERO */}
       <section className="trainers-hero">
@@ -127,34 +129,36 @@ function Trainers() {
 
         <div className="trainers-grid">
           {trainers.map((trainer, index) => (
-            <article className="trainer-card" key={trainer.name}>
+            <Tilt key={trainer.name} tiltMaxAngleX={8} tiltMaxAngleY={8} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.15} glareColor="white" glarePosition="all" borderRadius="20px">
+              <article className="trainer-card">
 
-              <div className="trainer-image-wrap">
-                <img
-                  src={trainer.image}
-                  alt={trainer.name}
-                  className="trainer-image"
-                />
+                <div className="trainer-image-wrap">
+                  <img
+                    src={trainer.image}
+                    alt={trainer.name}
+                    className="trainer-image"
+                  />
 
-                <span className="trainer-number">
-                  0{index + 1}
-                </span>
+                  <span className="trainer-number">
+                    0{index + 1}
+                  </span>
 
-                <span className="trainer-experience">
-                  {trainer.experience}
-                </span>
-              </div>
-
-              <div className="trainer-info">
-                <div>
-                  <h3>{trainer.name}</h3>
-                  <p>{trainer.role}</p>
+                  <span className="trainer-experience">
+                    {trainer.experience}
+                  </span>
                 </div>
 
-                <span className="arrow">↗</span>
-              </div>
+                <div className="trainer-info">
+                  <div>
+                    <h3>{trainer.name}</h3>
+                    <p>{trainer.role}</p>
+                  </div>
 
-            </article>
+                  <span className="arrow">↗</span>
+                </div>
+
+              </article>
+            </Tilt>
           ))}
         </div>
       </section>
@@ -207,10 +211,12 @@ function Trainers() {
 
         <div className="skills-grid">
           {skills.map((skill) => (
-            <div className="skill-card" key={skill.name}>
-              <img src={skill.logo} alt={skill.name} className="skill-logo" />
-              <span className="skill-name">{skill.name}</span>
-            </div>
+            <Tilt key={skill.name} tiltMaxAngleX={15} tiltMaxAngleY={15} perspective={1000} scale={1.05} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.2} glareColor="white" glarePosition="all" borderRadius="16px">
+              <div className="skill-card">
+                <img src={skill.logo} alt={skill.name} className="skill-logo" />
+                <span className="skill-name">{skill.name}</span>
+              </div>
+            </Tilt>
           ))}
         </div>
 
@@ -238,7 +244,7 @@ function Trainers() {
 
       </section>
 
-    </main>
+    </div>
   );
 }
 

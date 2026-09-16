@@ -1,6 +1,7 @@
 import "../styles/placements.css";
 import { FaGoogle, FaMicrosoft, FaApple, FaAmazon, FaFacebook } from "react-icons/fa";
 import { SiNvidia, SiMeta, SiNetflix } from "react-icons/si";
+import Tilt from "react-parallax-tilt";
 
 const students = [
   {
@@ -65,7 +66,7 @@ const steps = [
 
 function Placements() {
   return (
-    <main className="placements-page">
+    <div className="placements-page">
       {/* HERO */}
       <section className="placements-hero">
         <div className="placements-hero-top">
@@ -127,20 +128,22 @@ function Placements() {
 
         <div className="students-grid">
           {students.map((student, index) => (
-            <article className="student-card" key={student.name}>
-              <div className="student-image-wrap">
-                <img src={student.image} alt={student.name} />
-                <span className="student-number">0{index + 1}</span>
-                <span className="student-package">{student.package}</span>
-              </div>
-              <div className="student-info">
-                <div>
-                  <h3>{student.name}</h3>
-                  <p>{student.role}</p>
+            <Tilt key={student.name} tiltMaxAngleX={8} tiltMaxAngleY={8} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.15} glareColor="white" glarePosition="all" borderRadius="20px">
+              <article className="student-card">
+                <div className="student-image-wrap">
+                  <img src={student.image} alt={student.name} />
+                  <span className="student-number">0{index + 1}</span>
+                  <span className="student-package">{student.package}</span>
                 </div>
-                <strong>{student.company}</strong>
-              </div>
-            </article>
+                <div className="student-info">
+                  <div>
+                    <h3>{student.name}</h3>
+                    <p>{student.role}</p>
+                  </div>
+                  <strong>{student.company}</strong>
+                </div>
+              </article>
+            </Tilt>
           ))}
         </div>
       </section>
@@ -153,10 +156,12 @@ function Placements() {
         </div>
         <div className="companies-grid">
           {companies.map((company) => (
-            <div className="company-card" key={company.name} style={{ "--hover-color": company.color }}>
-              <company.icon className="company-icon" />
-              <span className="company-name">{company.name}</span>
-            </div>
+            <Tilt key={company.name} tiltMaxAngleX={15} tiltMaxAngleY={15} perspective={1000} scale={1.05} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.2} glareColor="white" glarePosition="all" borderRadius="16px">
+              <div className="company-card" style={{ "--hover-color": company.color }}>
+                <company.icon className="company-icon" />
+                <span className="company-name">{company.name}</span>
+              </div>
+            </Tilt>
           ))}
         </div>
       </section>
@@ -187,7 +192,7 @@ function Placements() {
         <p>Start learning today and take the next step toward your goals.</p>
         <a href="/classes" className="placement-cta-button">Explore Courses <span>→</span></a>
       </section>
-    </main>
+    </div>
   );
 }
 
