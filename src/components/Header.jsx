@@ -33,7 +33,7 @@ function Header() {
     <header className={`header ${isScrolled ? "scrolled" : ""}`}>
       <div className="header-container">
         <Link to="/" className="logo" onClick={closeMenu}>
-          Training<span>Institute</span>
+          <span>Training<span>Institute</span></span>
         </Link>
 
         <div 
@@ -41,29 +41,36 @@ function Header() {
           onClick={closeMenu}
         />
 
-        <nav className={`nav ${isMobileMenuOpen ? "nav-open" : ""}`}>
+        <nav
+          className={`nav ${isMobileMenuOpen ? "nav-open" : ""}`}
+          id="primary-navigation"
+          aria-label="Primary navigation"
+        >
           <div className="nav-links">
-            <Link to="/" className={isActive("/") ? "active" : ""} onClick={closeMenu} style={{"--i": 1}}>Home</Link>
-            <Link to="/classes" className={isActive("/classes") ? "active" : ""} onClick={closeMenu} style={{"--i": 2}}>Classes</Link>
-            <Link to="/course-details" className={isActive("/course-details") ? "active" : ""} onClick={closeMenu} style={{"--i": 3}}>Courses</Link>
-            <Link to="/trainers" className={isActive("/trainers") ? "active" : ""} onClick={closeMenu} style={{"--i": 4}}>Trainers & Mentors</Link>
-            <Link to="/placements" className={isActive("/placements") ? "active" : ""} onClick={closeMenu} style={{"--i": 5}}>Placements</Link>
-            <Link to="/contact" className={isActive("/contact") ? "active" : ""} onClick={closeMenu} style={{"--i": 6}}>Contact</Link>
+            <Link to="/" className={isActive("/") ? "active" : ""} onClick={closeMenu} style={{"--i": 1}} aria-current={isActive("/") ? "page" : undefined}>Home</Link>
+            <Link to="/classes" className={isActive("/classes") ? "active" : ""} onClick={closeMenu} style={{"--i": 2}} aria-current={isActive("/classes") ? "page" : undefined}>Classes</Link>
+            <Link to="/course-details" className={isActive("/course-details") ? "active" : ""} onClick={closeMenu} style={{"--i": 3}} aria-current={isActive("/course-details") ? "page" : undefined}>Courses</Link>
+            <Link to="/trainers" className={isActive("/trainers") ? "active" : ""} onClick={closeMenu} style={{"--i": 4}} aria-current={isActive("/trainers") ? "page" : undefined}>Trainers & Mentors</Link>
+            <Link to="/placements" className={isActive("/placements") ? "active" : ""} onClick={closeMenu} style={{"--i": 5}} aria-current={isActive("/placements") ? "page" : undefined}>Placements</Link>
+            <Link to="/contact" className={isActive("/contact") ? "active" : ""} onClick={closeMenu} style={{"--i": 6}} aria-current={isActive("/contact") ? "page" : undefined}>Contact</Link>
           </div>
-          <button className="header-cta mobile-cta" style={{"--i": 7}}>
+          <Link to="/classes" className="header-cta mobile-cta" style={{"--i": 7}} onClick={closeMenu}>
             Enroll Now
-          </button>
+          </Link>
         </nav>
 
         <div className="header-actions">
-          <button className="header-cta desktop-cta">
+          <Link to="/classes" className="header-cta desktop-cta">
             Enroll Now
-          </button>
+          </Link>
           
           <button 
             className={`mobile-toggle ${isMobileMenuOpen ? "open" : ""}`} 
             onClick={toggleMenu} 
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="primary-navigation"
+            type="button"
           >
             <div className="hamburger-line"></div>
             <div className="hamburger-line"></div>

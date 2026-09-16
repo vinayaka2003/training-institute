@@ -131,7 +131,7 @@ function Classes() {
         </span>
         <h1 className="classes-title">Class Schedules & Batches</h1>
         <p className="classes-subtitle">
-          Choose a schedule that fits your routine. All classes include live lab exercises, hands-on production code, and dedicated mentor support.
+          Flexible schedules, practical labs, and dedicated mentor support.
         </p>
       </div>
 
@@ -141,7 +141,7 @@ function Classes() {
           <Search size={18} className="search-icon-pos" />
           <input
             type="text"
-            placeholder="Search batches by course name or skill..."
+            placeholder="Search classes..."
             className="classes-search-input"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}

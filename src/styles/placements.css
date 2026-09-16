@@ -204,8 +204,12 @@
     gap: 25px;
 }
 
+.students-grid > div:nth-child(2) {
+    margin-top: 46px;
+}
+
 .student-card:nth-child(2) {
-    margin-top: 50px;
+    margin-top: 46px;
 }
 
 .student-image-wrap {
@@ -518,6 +522,9 @@
     }
     .students-grid {
         grid-template-columns: 1fr;
+    }
+    .students-grid > div:nth-child(2) {
+        margin-top: 0;
     }
     .student-card:nth-child(2) {
         margin-top: 0;

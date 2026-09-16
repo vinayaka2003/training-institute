@@ -2,7 +2,7 @@ import "../styles/contact.css";
 
 function Contact() {
   return (
-    <main className="contact-page">
+    <div className="contact-page">
       {/* HERO */}
       <section className="contact-hero">
         <div className="contact-hero-top">
@@ -92,17 +92,29 @@ function Contact() {
           <span className="eyebrow">FIND US</span>
           <h2>Come say<br /><em>hello.</em></h2>
         </div>
-        <div className="map-card" style={{ padding: 0, overflow: 'hidden', borderRadius: '12px' }}>
-          <iframe 
-            src="https://maps.google.com/maps?q=13.117886583704756,77.63248284960935&z=15&output=embed"
-            width="100%" 
-            height="100%" 
-            style={{ border: 0, minHeight: '350px' }}
-            allowFullScreen="" 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Google Map Location"
-          ></iframe>
+        <div className="map-wrapper" style={{ 
+          position: 'relative', 
+          padding: '2px', 
+          background: 'linear-gradient(135deg, rgba(234, 88, 12, 0.4), rgba(255,255,255,0.05))',
+          borderRadius: '24px', 
+          boxShadow: '0 30px 60px rgba(0,0,0,0.3)'
+        }}>
+          <div className="map-card" style={{ padding: 0, overflow: 'hidden', borderRadius: '22px', background: '#111' }}>
+            <iframe 
+              src="https://maps.google.com/maps?q=13.117886583704756,77.63248284960935&z=15&output=embed"
+              width="100%" 
+              height="100%" 
+              style={{ 
+                border: 0, 
+                minHeight: '450px', 
+                filter: 'invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%) grayscale(20%)'
+              }}
+              allowFullScreen="" 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Google Map Location"
+            ></iframe>
+          </div>
         </div>
       </section>
 
@@ -116,7 +128,7 @@ function Contact() {
           WhatsApp Us <span>↗</span>
         </a>
       </section>
-    </main>
+    </div>
   );
 }
 
