@@ -106,6 +106,8 @@ function Home() {
 
   // Interactive FAQ Accordion State
   const [openFaq, setOpenFaq] = useState(0);
+  const [selectedFaqCategory, setSelectedFaqCategory] = useState("All");
+  const faqCategories = ["All", "Schedule", "Eligibility", "Mentorship", "Placement"];
 
   const codeSnippets = {
     "App.jsx": [
@@ -188,20 +190,53 @@ function Home() {
     {
       q: "What are the live batch schedules and timings?",
       a: "We offer both Weekday batches (Mon - Fri, morning and evening slots) and Weekend batches (Sat - Sun, intensive labs). All live sessions are recorded and uploaded with code repositories for lifetime review.",
+      category: "Schedule",
     },
     {
       q: "Can I join if I don't have a Computer Science degree?",
       a: "Yes, over 40% of our successful alumni come from non-CS backgrounds. Our curriculum starts from engineering foundations before progressing to advanced enterprise architectures.",
+      category: "Eligibility",
     },
     {
       q: "How does the 1-on-1 mentorship work?",
       a: "Each student is paired with a dedicated working tech lead. You receive weekly 1-on-1 code reviews, architectural feedback on your pull requests, and on-demand doubt clearance.",
+      category: "Mentorship",
     },
     {
       q: "What career and placement support is provided?",
       a: "We provide full placement assistance: resume reviews, GitHub portfolio polishing, 1-on-1 mock technical interviews, and direct hiring referrals to over 200+ partner companies.",
+      category: "Placement",
+    },
+    {
+      q: "Are the live classes recorded if I miss a session?",
+      a: "Yes, every live coding session is recorded in HD and made available within 2 hours along with GitHub repository branches, notes, and interactive challenges.",
+      category: "Schedule",
+    },
+    {
+      q: "Are there any prerequisites before enrolling?",
+      a: "Basic logical problem-solving aptitude is all you need. We provide comprehensive pre-course preparatory modules covering terminal basics and fundamental programming syntax.",
+      category: "Eligibility",
+    },
+    {
+      q: "Who are the mentors and how accessible are they throughout the week?",
+      a: "Mentors are senior software engineers and architects actively working at top tech firms. You can book 1:1 sessions, ping them on dedicated Discord channels, and get code reviews on your pull requests.",
+      category: "Mentorship",
+    },
+    {
+      q: "Do you offer interview preparation and salary negotiation support?",
+      a: "Absolutely. We conduct mock technical interviews (DSA & System Design), behavioral workshops, resume and portfolio audits, and offer personalized salary negotiation guidance.",
+      category: "Placement",
     },
   ];
+
+  const filteredFaqs = selectedFaqCategory === "All"
+    ? faqs
+    : faqs.filter((f) => f.category === selectedFaqCategory);
+
+  const handleCategoryChange = (cat) => {
+    setSelectedFaqCategory(cat);
+    setOpenFaq(0);
+  };
 
   return (
     <div className="home-container">
@@ -433,8 +468,22 @@ function Home() {
           <h2 className="section-main-title">Frequently Asked Questions</h2>
         </div>
 
+        {/* Category Filter Chips */}
+        <div className="faq-filter-chips">
+          {faqCategories.map((cat) => (
+            <button
+              key={cat}
+              className={`faq-chip ${selectedFaqCategory === cat ? "active" : ""}`}
+              onClick={() => handleCategoryChange(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Accordion List */}
         <div className="faq-list">
-          {faqs.map((f, idx) => {
+          {filteredFaqs.map((f, idx) => {
             const isOpen = openFaq === idx;
             return (
               <div key={idx} className={`faq-item ${isOpen ? "open" : ""}`}>
@@ -453,6 +502,17 @@ function Home() {
               </div>
             );
           })}
+        </div>
+
+        {/* Bottom Help / Support Banner */}
+        <div className="faq-support-banner">
+          <div className="faq-support-content">
+            <h4>Still have questions?</h4>
+            <p>Can&apos;t find the answer you&apos;re looking for? Reach out to our admissions team.</p>
+          </div>
+          <Link to="/contact" className="faq-support-btn">
+            Get in Touch <ArrowRight size={16} />
+          </Link>
         </div>
       </section>
     </div>
