@@ -29,6 +29,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  padding-top: 90px;
+}
+
+@media (max-width: 1050px) {
+  main {
+    padding-top: 65px;
+  }
+}
+
 button, input, textarea, select {
   font-family: inherit;
 }

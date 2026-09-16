@@ -3,243 +3,242 @@ import "../styles/trainers.css";
 const trainers = [
   {
     name: "Rahul Sharma",
-    role: "Senior Full Stack Developer",
-    experience: "8+ Years Experience",
-    expertise: ["React", "Node.js", "Java"],
+    role: "Full Stack Development",
+    experience: "8+ Years",
     image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85",
   },
   {
     name: "Priya Nair",
-    role: "Data Science Mentor",
-    experience: "7+ Years Experience",
-    expertise: ["Python", "Machine Learning", "SQL"],
+    role: "Data Science & AI",
+    experience: "7+ Years",
     image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=85",
   },
   {
     name: "Arjun Kumar",
-    role: "Java & Backend Trainer",
-    experience: "9+ Years Experience",
-    expertise: ["Java", "Spring Boot", "APIs"],
+    role: "Java & Backend",
+    experience: "9+ Years",
     image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85",
   },
   {
     name: "Sneha Rao",
-    role: "UI/UX Design Mentor",
-    experience: "6+ Years Experience",
-    expertise: ["Figma", "UI/UX", "Design"],
+    role: "UI/UX Design",
+    experience: "6+ Years",
     image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=700&q=80",
-  },
-  {
-    name: "Karan Mehta",
-    role: "Cloud & DevOps Mentor",
-    experience: "8+ Years Experience",
-    expertise: ["AWS", "Docker", "DevOps"],
-    image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=700&q=80",
-  },
-  {
-    name: "Ananya Iyer",
-    role: "Career & Placement Mentor",
-    experience: "10+ Years Experience",
-    expertise: ["Interviews", "Career", "Placement"],
-    image:
-      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=900&q=85",
   },
 ];
 
-const benefits = [
+const skills = [
   {
-    number: "01",
-    title: "Industry Experience",
-    description:
-      "Learn from professionals with practical experience and knowledge of real-world industry requirements.",
+    name: "Java",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
   },
   {
-    number: "02",
-    title: "Practical Learning",
-    description:
-      "Build your skills through practical projects, real-world examples, and hands-on learning.",
+    name: "Python",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
   },
   {
-    number: "03",
-    title: "Career Guidance",
-    description:
-      "Get guidance for interviews, resumes, portfolios, and the skills employers are looking for.",
+    name: "React",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
   },
   {
-    number: "04",
-    title: "Personalized Mentorship",
-    description:
-      "Receive continuous feedback and guidance throughout your learning journey.",
+    name: "JavaScript",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+  },
+  {
+    name: "AI & ML",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg",
+  },
+  {
+    name: "Data Science",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg",
+  },
+  {
+    name: "UI/UX",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg",
+  },
+  {
+    name: "Cloud",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg",
+  },
+  {
+    name: "DevOps",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+  },
+  {
+    name: "SQL",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
   },
 ];
 
 function Trainers() {
   return (
-    <div className="trainers-page">
-      {/* Hero */}
-      <section className="trainers-hero">
-        <div className="trainers-hero-content">
-          <span className="section-label">OUR EXPERTS</span>
+    <main className="trainers-page">
 
+      {/* HERO */}
+      <section className="trainers-hero">
+        <div className="hero-top">
+          <span className="eyebrow">TRAINERS & MENTORS</span>
+
+
+        </div>
+
+        <div className="hero-main">
           <h1>
-            Learn From
-            <span> Industry Experts</span>
+            Learn from
+            <br />
+            <em>people who build.</em>
           </h1>
 
-          <p>
-            Meet our experienced trainers and mentors who bring practical
-            knowledge, industry experience, and real-world insights into every
-            classroom.
-          </p>
+          <div className="hero-side">
+            <p>
+              Industry experience.
+              <br />
+              Practical knowledge.
+              <br />
+              Real mentorship.
+            </p>
 
-          <a href="#trainers" className="trainers-primary-btn">
-            Meet Our Trainers
-            <span>↓</span>
-          </a>
+            <a href="#trainers" className="scroll-link">
+              Meet the team
+              <span>↓</span>
+            </a>
+          </div>
         </div>
 
-        <div className="hero-stat">
-          <strong>50+</strong>
-          <span>Industry Experts</span>
-        </div>
+        <div className="hero-line" />
       </section>
 
-      {/* Trainers */}
+      {/* TRAINERS */}
       <section className="trainers-section" id="trainers">
-        <div className="section-heading">
-          <div>
-            <span className="section-label">MEET THE TEAM</span>
-            <h2>Our Trainers & Mentors</h2>
-          </div>
 
-          <p>
-            Experienced professionals dedicated to helping you build
-            practical skills and confidence for your career.
-          </p>
+        <div className="section-top">
+          <span className="eyebrow">THE TEAM</span>
+
+          <h2>
+            The people
+            <br />
+            behind your learning.
+          </h2>
         </div>
 
         <div className="trainers-grid">
-          {trainers.map((trainer) => (
+          {trainers.map((trainer, index) => (
             <article className="trainer-card" key={trainer.name}>
-              <div className="trainer-image-wrapper">
+
+              <div className="trainer-image-wrap">
                 <img
                   src={trainer.image}
                   alt={trainer.name}
                   className="trainer-image"
                 />
 
+                <span className="trainer-number">
+                  0{index + 1}
+                </span>
+
                 <span className="trainer-experience">
                   {trainer.experience}
                 </span>
               </div>
 
-              <div className="trainer-content">
-                <h3>{trainer.name}</h3>
-
-                <p className="trainer-role">{trainer.role}</p>
-
-                <div className="expertise-list">
-                  {trainer.expertise.map((skill) => (
-                    <span key={skill}>{skill}</span>
-                  ))}
+              <div className="trainer-info">
+                <div>
+                  <h3>{trainer.name}</h3>
+                  <p>{trainer.role}</p>
                 </div>
 
-                <a href="#" className="trainer-link">
-                  View Profile <span>↗</span>
-                </a>
+                <span className="arrow">↗</span>
               </div>
+
             </article>
           ))}
         </div>
       </section>
 
-      {/* Why Learn From Us */}
-      <section className="benefits-section">
-        <div className="benefits-heading">
-          <span className="section-label">WHY LEARN WITH US</span>
+      {/* EXPERIENCE */}
+      <section className="experience-section">
+
+        <div className="experience-title">
+          <span className="eyebrow">EXPERIENCE MATTERS</span>
 
           <h2>
-            More Than Just
-            <span> Training.</span>
+            Learn from
+            <br />
+            <em>real experience.</em>
           </h2>
-
-          <p>
-            Our mentors combine technical expertise with practical experience
-            to help you become industry-ready.
-          </p>
         </div>
 
-        <div className="benefits-grid">
-          {benefits.map((benefit) => (
-            <div className="benefit-card" key={benefit.number}>
-              <span className="benefit-number">{benefit.number}</span>
+        <div className="stats">
 
-              <h3>{benefit.title}</h3>
+          <div className="stat">
+            <strong>50<span>+</span></strong>
+            <p>Industry Experts</p>
+          </div>
 
-              <p>{benefit.description}</p>
-            </div>
-          ))}
+          <div className="stat">
+            <strong>8<span>+</span></strong>
+            <p>Years Avg. Experience</p>
+          </div>
+
+          <div className="stat">
+            <strong>10K<span>+</span></strong>
+            <p>Students Trained</p>
+          </div>
+
         </div>
       </section>
 
-      {/* Expertise */}
+      {/* EXPERTISE */}
       <section className="expertise-section">
-        <div className="expertise-content">
-          <span className="section-label">OUR EXPERTISE</span>
 
-          <h2>Skills That Matter in the Real World</h2>
+        <div className="expertise-header">
+          <span className="eyebrow">EXPERTISE</span>
 
-          <p>
-            Learn technologies and tools that are widely used across modern
-            software development and technology careers.
-          </p>
+          <h2>
+            What they
+            <br />
+            <em>know.</em>
+          </h2>
         </div>
 
-        <div className="skills-wrapper">
-          {[
-            "Java",
-            "Python",
-            "React",
-            "Node.js",
-            "JavaScript",
-            "SQL",
-            "Machine Learning",
-            "Data Science",
-            "UI/UX",
-            "Figma",
-            "AWS",
-            "DevOps",
-          ].map((skill) => (
-            <span className="skill-pill" key={skill}>
-              {skill}
-            </span>
+        <div className="skills-grid">
+          {skills.map((skill) => (
+            <div className="skill-card" key={skill.name}>
+              <img src={skill.logo} alt={skill.name} className="skill-logo" />
+              <span className="skill-name">{skill.name}</span>
+            </div>
           ))}
         </div>
+
       </section>
 
       {/* CTA */}
       <section className="trainers-cta">
-        <div>
-          <span className="section-label">START YOUR JOURNEY</span>
 
-          <h2>Ready to Learn From Industry Experts?</h2>
+        <span className="eyebrow">START YOUR JOURNEY</span>
 
-          <p>
-            Explore our courses and start building the skills for your future.
-          </p>
-        </div>
+        <h2>
+          Your next chapter
+          <br />
+          <em>starts here.</em>
+        </h2>
+
+        <p>
+          Learn from experts. Build something real.
+        </p>
 
         <a href="/classes" className="cta-button">
           Explore Courses
           <span>→</span>
         </a>
+
       </section>
-    </div>
+
+    </main>
   );
 }
 
