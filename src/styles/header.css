@@ -105,6 +105,11 @@
   border-radius: 100px; /* Pill shape */
   font-size: 14px;
   font-weight: 700;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
