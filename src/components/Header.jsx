@@ -52,7 +52,8 @@ function Header() {
       <header className={`header ${isScrolled ? "scrolled" : ""}`}>
         <div className="header-container">
           <Link to="/" className="logo" onClick={closeMenu}>
-            <span>Training<span>Institute</span></span>
+            <img src="/brand-logo.jpg" alt="TrainingInstitute Logo" className="header-logo-icon" />
+            <span className="logo-text">Training<span className="logo-highlight">Institute</span></span>
           </Link>
 
           <div 
