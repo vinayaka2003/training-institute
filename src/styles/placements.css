@@ -1,12 +1,6 @@
 .placements-page {
-    --black: #111111;
-    --muted: #737373;
-    --line: #dedede;
-    --soft: #f6f5f2;
-    --accent: #f97316;
-
-    background: #ffffff;
-    color: var(--black);
+    background: var(--color-background);
+    color: var(--color-primary);
     overflow: hidden;
 }
 
@@ -20,7 +14,7 @@
 }
 
 .eyebrow {
-    color: var(--accent);
+    color: var(--color-accent);
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.16em;
@@ -31,9 +25,9 @@
 ========================= */
 
 .placements-hero {
-    max-width: 1280px;
+    width: min(100% - 80px, var(--container-width));
     margin: 0 auto;
-    padding: 40px 40px 80px; 
+    padding: 40px 0 80px; 
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -71,7 +65,7 @@
 .companies-title h2 em,
 .process-heading h2 em,
 .placements-cta h2 em {
-    color: var(--accent);
+    color: var(--color-accent);
     font-family: Georgia, "Times New Roman", serif;
     font-weight: 400;
 }
@@ -82,13 +76,13 @@
 
 .placements-hero-side p {
     margin: 0 0 30px;
-    color: var(--muted);
+    color: var(--color-secondary);
     font-size: 14px;
     line-height: 1.6;
 }
 
 .hero-stat {
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--color-border);
     padding-top: 15px;
 }
 
@@ -99,7 +93,7 @@
 }
 
 .hero-stat span {
-    color: var(--muted);
+    color: var(--color-secondary);
     font-size: 11px;
 }
 
@@ -107,7 +101,7 @@
     display: flex;
     justify-content: space-between;
     padding-top: 20px;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--color-border);
     color: #999;
     font-size: 9px;
     letter-spacing: 0.15em;
@@ -120,7 +114,7 @@
 
 .placement-numbers {
     padding: 80px max(40px, calc((100% - 1280px) / 2)); /* Reduced from 120px */
-    background: var(--soft);
+    background: var(--color-surface);
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;
     gap: 80px;
@@ -141,8 +135,8 @@
 .big-number {
     min-height: 160px;
     padding: 25px;
-    border-top: 1px solid var(--line);
-    border-right: 1px solid var(--line);
+    border-top: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
 }
 
 .big-number:nth-child(2n) {
@@ -155,14 +149,14 @@
 }
 
 .big-number strong span {
-    color: var(--accent);
+    color: var(--color-accent);
     font-size: 0.5em;
     letter-spacing: -0.02em;
 }
 
 .big-number p {
     margin: 8px 0 0;
-    color: var(--muted);
+    color: var(--color-secondary);
     font-size: 11px;
 }
 
@@ -171,9 +165,9 @@
 ========================= */
 
 .success-section {
-    max-width: 1280px;
-    margin: auto;
-    padding: 80px 40px; /* Reduced from 120px */
+    width: min(100% - 80px, var(--container-width));
+    margin: 0 auto;
+    padding: var(--section-gap) 0;
 }
 
 .success-header {
@@ -193,7 +187,7 @@
 
 .success-header p {
     margin: 0;
-    color: var(--muted);
+    color: var(--color-secondary);
     font-size: 13px;
     line-height: 1.6;
 }
@@ -201,7 +195,7 @@
 .students-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    gap: var(--grid-gap);
 }
 
 .students-grid > div:nth-child(2) {
@@ -251,7 +245,7 @@
     right: 18px;
     bottom: 18px;
     padding: 10px 13px;
-    background: var(--black);
+    background: var(--color-primary);
     color: #ffffff;
     font-size: 11px;
     font-weight: 700;
@@ -261,7 +255,7 @@
     display: flex;
     justify-content: space-between;
     padding-top: 18px;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--color-border);
     margin-top: 15px;
 }
 
@@ -272,7 +266,7 @@
 
 .student-info p {
     margin: 0;
-    color: var(--muted);
+    color: var(--color-secondary);
     font-size: 11px;
 }
 
@@ -286,7 +280,7 @@
 
 .companies-section {
     padding: 80px max(40px, calc((100% - 1280px) / 2)); /* Reduced from 120px */
-    background: var(--black);
+    background: var(--color-primary);
     color: #ffffff;
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;
@@ -363,9 +357,9 @@
 ========================= */
 
 .career-process {
-    max-width: 1280px;
-    margin: auto;
-    padding: 80px 40px; /* Reduced from 120px */
+    width: min(100% - 80px, var(--container-width));
+    margin: 0 auto;
+    padding: var(--section-gap) 0;
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;
     gap: 80px;
@@ -379,7 +373,7 @@
 }
 
 .steps {
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--color-border);
 }
 
 .step {
@@ -387,11 +381,11 @@
     grid-template-columns: 60px 1fr;
     gap: 25px;
     padding: 25px 0;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .step-number {
-    color: var(--accent);
+    color: var(--color-accent);
     font-size: 10px;
     font-weight: 800;
 }
@@ -404,7 +398,7 @@
 .step p {
     max-width: 430px;
     margin: 0;
-    color: var(--muted);
+    color: var(--color-secondary);
     font-size: 12px;
     line-height: 1.6;
 }
@@ -414,10 +408,11 @@
 ========================= */
 
 .placements-cta {
-    max-width: 1280px;
+    width: min(100% - 80px, var(--container-width));
     margin: 0 auto 80px;
-    padding: 80px 40px; /* Reduced from 100px */
-    background: var(--soft);
+    padding: var(--section-gap) 40px;
+    border-radius: var(--radius);
+    background: var(--color-surface);
     text-align: center;
 }
 
@@ -430,7 +425,7 @@
 
 .placements-cta p {
     margin: 25px 0 35px;
-    color: var(--muted);
+    color: var(--color-secondary);
     font-size: 13px;
 }
 
@@ -439,7 +434,7 @@
     align-items: center;
     gap: 20px;
     padding: 15px 22px;
-    background: var(--black);
+    background: var(--color-primary);
     color: #ffffff !important;
     border-radius: 6px;
     font-size: 12px;
@@ -448,8 +443,8 @@
 }
 
 .placement-cta-button:hover {
-    background: var(--accent);
-    color: var(--black) !important;
+    background: var(--color-accent);
+    color: var(--color-primary) !important;
     transform: translateY(-3px);
 }
 

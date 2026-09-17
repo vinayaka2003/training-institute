@@ -8,51 +8,55 @@ iframe {
 
 /* Shared visual language: warm paper, ink, and one editorial accent. */
 body {
-  background: var(--canvas);
+  background: var(--color-background);
 }
 
 .header {
   background: rgba(245, 244, 239, 0.9);
-  border-bottom-color: var(--line);
+  border-bottom-color: var(--color-border);
   backdrop-filter: blur(16px);
 }
 
 .header-container {
-  max-width: 1320px;
+  width: min(calc(100% - (var(--container-padding) * 2)), var(--container-width));
   padding-block: 18px;
 }
 
 .logo,
 .nav-links a,
 .header-cta {
-  color: var(--ink);
+  color: var(--color-primary);
 }
 
-.logo span,
+.logo .logo-text {
+  color: #111111 !important;
+}
+
+.logo .logo-highlight,
 .nav-links a.active,
 .nav-links a:hover {
-  color: var(--accent);
+  color: #f97316 !important;
 }
 
 .nav-links a::after {
-  background: var(--accent);
+  background: var(--color-accent);
 }
 
 .header-cta {
-  background: var(--ink);
+  background: var(--color-primary);
   border-radius: 4px;
   box-shadow: none;
 }
 
 .header-cta:hover {
-  background: var(--accent);
+  background: var(--color-accent);
   box-shadow: none;
 }
 
 .home-container,
 .classes-container,
 .courses-container {
-  max-width: 1320px;
+  width: min(calc(100% - (var(--container-padding) * 2)), var(--container-width));
 }
 
 .home-title,
@@ -67,14 +71,14 @@ body {
 
 .home-title span,
 .section-tag-pill {
-  color: var(--accent);
+  color: var(--color-accent);
 }
 
 .home-tag,
 .classes-tag,
 .courses-tag {
   background: transparent;
-  color: var(--accent);
+  color: var(--color-accent);
   border: 1px solid currentColor;
   border-radius: 2px;
   box-shadow: none;
@@ -83,7 +87,7 @@ body {
 .hero-primary-btn,
 .batch-reserve-btn,
 .course-learn-btn {
-  background: var(--ink);
+  background: var(--color-primary);
   border-radius: 3px;
   box-shadow: none;
 }
@@ -91,13 +95,13 @@ body {
 .hero-primary-btn:hover,
 .batch-reserve-btn:hover,
 .course-learn-btn:hover {
-  background: var(--accent);
+  background: var(--color-accent);
   box-shadow: none;
 }
 
 .hero-secondary-btn {
   background: transparent;
-  border-color: var(--line);
+  border-color: var(--color-border);
   border-radius: 3px;
 }
 
@@ -109,7 +113,7 @@ body {
 .course-card,
 .feature-card {
   background: rgba(255, 255, 255, 0.42);
-  border-color: var(--line);
+  border-color: var(--color-border);
   border-radius: 4px;
   box-shadow: none;
 }
@@ -117,23 +121,23 @@ body {
 .feature-card:hover,
 .batch-card:hover,
 .course-card:hover {
-  border-color: var(--ink);
+  border-color: var(--color-primary);
   box-shadow: none;
 }
 
 .social-proof-badge {
-  border-color: var(--line);
+  border-color: var(--color-border);
   border-radius: 4px;
   box-shadow: none;
 }
 
 .footer-ultra {
-  background: var(--ink);
+  background: var(--color-primary);
   margin-top: 36px;
 }
 
 .footer-glow-top {
-  background: var(--accent);
+  background: var(--color-accent);
   box-shadow: none;
 }
 
@@ -141,8 +145,8 @@ body {
 .trainers-page,
 .placements-page,
 .contact-page {
-  background: var(--canvas);
-  color: var(--ink);
+  background: var(--color-background);
+  color: var(--color-primary);
   font-family: var(--font-primary);
 }
 
@@ -152,16 +156,16 @@ body {
 .placements-page h2,
 .contact-page h1,
 .contact-page h2 {
-  font-family: var(--font-heading);
-  color: var(--ink);
+  font-family: var(--font-primary);
+  color: var(--color-primary);
   letter-spacing: -0.055em;
 }
 
 .trainers-page em,
 .placements-page em,
 .contact-page em {
-  color: var(--accent);
-  font-family: var(--font-heading);
+  color: var(--color-accent);
+  font-family: var(--font-primary);
   font-style: normal;
   font-weight: 500;
 }
@@ -169,7 +173,7 @@ body {
 .trainers-page .eyebrow,
 .placements-page .eyebrow,
 .contact-page .eyebrow {
-  color: var(--accent);
+  color: var(--color-accent);
   letter-spacing: 0.14em;
 }
 
@@ -180,7 +184,7 @@ body {
 .success-section,
 .contact-main,
 .contact-bottom {
-  max-width: 1320px;
+  width: min(calc(100% - (var(--container-padding) * 2)), var(--container-width));
 }
 
 .trainer-card,
@@ -188,14 +192,14 @@ body {
 .contact-form-wrapper,
 .map-card {
   border-radius: 4px;
-  border-color: var(--line);
+  border-color: var(--color-border);
   box-shadow: none;
 }
 
 .trainer-card:hover,
 .student-card:hover {
   box-shadow: none;
-  border-color: var(--ink);
+  border-color: var(--color-primary);
 }
 
 .trainer-info,
@@ -206,7 +210,7 @@ body {
 .trainer-info p,
 .student-info strong,
 .detail-label {
-  color: var(--accent);
+  color: var(--color-accent);
 }
 
 .experience-section,
@@ -218,7 +222,7 @@ body {
 .location-section,
 .trainers-cta,
 .placements-cta {
-  background: var(--ink);
+  background: var(--color-primary);
 }
 
 .company-card,
@@ -234,22 +238,19 @@ body {
 /* Keep Trainers, Placements, and Contact aligned with the compact discovery pages. */
 .trainers-hero,
 .placements-hero,
-.contact-hero {
-  max-width: 1180px;
-}
-
+.contact-hero,
 .trainers-section,
 .success-section,
 .contact-main,
 .contact-bottom,
 .career-process,
 .expertise-section {
-  max-width: 1180px;
+  width: min(calc(100% - (var(--container-padding) * 2)), var(--container-width));
 }
 
 .trainer-card,
 .student-card {
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--color-accent);
   border-radius: 3px;
 }
 
@@ -326,12 +327,13 @@ body {
 
 /* Focused class discovery: one clear scan path from course to action. */
 .classes-container {
-  max-width: 1180px;
+  width: min(calc(100% - (var(--container-padding) * 2)), var(--container-width));
 }
 
 .classes-header {
-  max-width: 620px;
-  margin: 0 auto 2rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 2rem 0;
 }
 
 .classes-title {
@@ -470,12 +472,13 @@ body {
 
 /* Course discovery follows the same quiet hierarchy as batch discovery. */
 .courses-container {
-  max-width: 1180px;
+  width: min(calc(100% - (var(--container-padding) * 2)), var(--container-width));
 }
 
 .courses-header {
-  max-width: 620px;
-  margin: 0 auto 2rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 2rem 0;
 }
 
 .courses-title {
@@ -620,9 +623,12 @@ body {
 
 .trainers-page h1,
 .placements-page h1,
-.contact-page h1 {
-  font-size: clamp(3.6rem, 8vw, 7.5rem);
-  line-height: 0.92;
+.contact-page h1,
+.home-title,
+.classes-title,
+.courses-title {
+  font-size: clamp(64px, 7.5vw, 110px) !important;
+  line-height: 0.88 !important;
 }
 
 .trainers-page h2,
@@ -703,8 +709,12 @@ body {
 
   .trainers-page h1,
   .placements-page h1,
-  .contact-page h1 {
-    font-size: clamp(3rem, 13vw, 4rem);
+  .contact-page h1,
+  .home-title,
+  .classes-title,
+  .courses-title {
+    font-size: clamp(40px, 8vw, 64px) !important;
+    line-height: 0.9 !important;
   }
 
   .trainers-page h2,
@@ -798,14 +808,33 @@ textarea {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --container-padding: 20px;
+  }
+
   main {
     padding-top: 72px;
   }
 
+  .container,
   .home-container,
   .classes-container,
-  .courses-container {
-    padding: 24px 16px 56px;
+  .courses-container,
+  .trainers-hero,
+  .placements-hero,
+  .contact-hero,
+  .trainers-section,
+  .success-section,
+  .contact-main,
+  .contact-bottom,
+  .header-container {
+    width: min(calc(100% - (var(--container-padding) * 2)), var(--container-width)) !important;
+    margin: 0 auto !important;
+    padding-top: 24px !important;
+    padding-bottom: 60px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
   }
 
   .home-split-hero {
@@ -814,8 +843,13 @@ textarea {
 
   .home-title,
   .classes-title,
-  .courses-title {
-    font-size: clamp(2rem, 9vw, 2.7rem);
+  .courses-title,
+  .trainers-page h1,
+  .placements-page h1,
+  .contact-page h1,
+  .hero-main h1 {
+    font-size: clamp(34px, 8.5vw, 54px) !important;
+    line-height: 0.92 !important;
     overflow-wrap: anywhere;
   }
 
@@ -912,8 +946,12 @@ textarea {
 
   .contact-hero h1,
   .placements-hero h1,
-  .hero-main h1 {
-    font-size: clamp(2.8rem, 13vw, 5rem);
+  .hero-main h1,
+  .home-title,
+  .classes-title,
+  .courses-title {
+    font-size: clamp(34px, 8.5vw, 54px) !important;
+    line-height: 0.92 !important;
     white-space: normal;
     overflow-wrap: anywhere;
   }
@@ -1005,83 +1043,87 @@ textarea {
   }
 }
 
-/* Final navigation treatment. */
+/* Final navigation treatment - 100% Responsive Navbar */
 .header {
-  background: rgba(245, 244, 239, 0.94);
-  border-bottom: 1px solid var(--line);
-  box-shadow: 0 8px 24px rgba(23, 23, 23, 0.04);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .header-container {
-  max-width: 1180px;
+  width: min(calc(100% - (var(--container-padding) * 2)), var(--container-width));
   min-height: 72px;
-  padding: 12px 0;
+  padding: 14px 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1240px) and (min-width: 1051px) {
+  .nav-links {
+    gap: 16px !important;
+  }
+
+  .nav-links a {
+    font-size: 13px !important;
+  }
+
+  .header-cta {
+    padding: 10px 18px !important;
+    font-size: 12px !important;
+  }
 }
 
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  color: var(--ink);
-  font-size: 17px;
-  letter-spacing: -0.045em;
-}
-
-.logo-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 3px;
-  background: var(--accent);
-  color: var(--canvas) !important;
-  font-size: 10px;
+  gap: 8px;
+  color: var(--color-primary);
+  font-size: 22px;
   font-weight: 800;
-  letter-spacing: 0.03em;
+  letter-spacing: -0.03em;
 }
 
-.logo > span:last-child {
-  color: var(--ink);
-}
-
-.logo > span:last-child > span {
-  color: var(--accent);
-}
-
-.nav-links {
-  gap: 24px;
+.logo .logo-highlight {
+  color: #f97316 !important;
 }
 
 .nav-links a {
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.015em;
-  padding: 7px 0;
+  color: var(--color-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding: 8px 0;
 }
 
-.nav-links a::after {
-  bottom: 1px;
-  height: 1px;
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--color-primary);
 }
 
 .header-actions {
-  gap: 10px;
+  gap: 12px;
 }
 
 .header-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 38px;
-  padding: 0 16px;
-  border-radius: 3px;
-  color: var(--canvas);
-  font-size: 11px;
-  letter-spacing: 0.04em;
+  min-height: 42px;
+  padding: 0 22px;
+  border-radius: 100px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   text-decoration: none;
-  text-transform: uppercase;
+  transition: all 0.25s ease;
+}
+
+.header-cta:hover {
+  background: var(--color-accent);
+  transform: translateY(-1px);
 }
 
 .mobile-cta {
@@ -1093,25 +1135,29 @@ textarea {
 }
 
 .mobile-toggle {
-  border: 1px solid var(--line);
-  border-radius: 3px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
 }
 
 .hamburger-line {
-  background: var(--ink);
+  background: var(--color-primary);
 }
 
 @media (max-width: 1050px) {
   .header-container {
-    min-height: 64px;
-    padding: 10px 20px;
+    width: 100% !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-top: 14px !important;
+    padding-bottom: 14px !important;
   }
 
   .nav {
     width: min(88vw, 360px);
-    background: var(--canvas);
-    border-left: 1px solid var(--line);
-    box-shadow: -18px 0 40px rgba(23, 23, 23, 0.12);
+    background: var(--color-background);
+    border-left: 1px solid var(--color-border);
+    box-shadow: -18px 0 40px rgba(0, 0, 0, 0.12);
   }
 
   .nav-links {
@@ -1120,14 +1166,14 @@ textarea {
 
   .nav-links a {
     padding: 16px 0;
-    color: var(--ink);
+    color: var(--color-primary);
     font-size: 16px;
     letter-spacing: -0.01em;
   }
 
   .nav-links a.active,
   .nav-links a:hover {
-    color: var(--accent);
+    color: var(--color-accent);
   }
 
   .desktop-cta {
@@ -1138,15 +1184,5 @@ textarea {
     display: inline-flex;
     margin: 20px 24px 0;
     width: calc(100% - 48px);
-  }
-}
-
-@media (max-width: 500px) {
-  .header-container {
-    padding-inline: 14px;
-  }
-
-  .logo {
-    font-size: 16px;
   }
 }

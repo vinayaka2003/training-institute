@@ -1,12 +1,6 @@
 .contact-page {
-    --black: #111111;
-    --muted: #737373;
-    --line: #dedede;
-    --soft: #f6f5f2;
-    --accent: #f97316;
-
-    background: #ffffff;
-    color: var(--black);
+    background: var(--color-background);
+    color: var(--color-primary);
     overflow: hidden;
 }
 
@@ -20,7 +14,7 @@
 }
 
 .eyebrow {
-    color: var(--accent);
+    color: var(--color-accent);
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 0.16em;
@@ -31,9 +25,9 @@
 ================================= */
 
 .contact-hero {
-    max-width: 1280px;
+    width: min(100% - 80px, var(--container-width));
     margin: 0 auto;
-    padding: 40px 40px 80px; 
+    padding: 40px 0 80px; 
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -63,21 +57,20 @@
     line-height: 0.9;
     letter-spacing: -0.05em;
     font-weight: 700;
-    white-space: nowrap;
 }
 
 .contact-hero h1 em,
 .contact-info h2 em,
 .location-header h2 em,
 .contact-bottom h2 em {
-    color: var(--accent);
+    color: var(--color-accent);
     font-style: normal;
 }
 
 .contact-hero-line {
     width: 100%;
     height: 1px;
-    background: var(--line);
+    background: var(--color-border);
 }
 
 /* =================================
@@ -85,9 +78,9 @@
 ================================= */
 
 .contact-main {
-    max-width: 1280px;
+    width: min(100% - 80px, var(--container-width));
     margin: 0 auto;
-    padding: 80px 40px; /* Reduced from 120px */
+    padding: var(--section-gap) 0;
     display: grid;
     grid-template-columns: 0.85fr 1.15fr;
     gap: 120px;
@@ -114,7 +107,7 @@
 /* DETAILS */
 
 .contact-details {
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--color-border);
 }
 
 .contact-detail {
@@ -123,7 +116,7 @@
     flex-direction: column;
     gap: 7px;
     padding: 20px 45px 20px 0;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 1px solid var(--color-border);
     transition: padding-left 0.25s ease;
 }
 
@@ -132,7 +125,7 @@
 }
 
 .detail-label {
-    color: var(--accent);
+    color: var(--color-accent);
     font-size: 9px;
     font-weight: 800;
     letter-spacing: 0.15em;
@@ -153,7 +146,7 @@
 }
 
 .contact-detail:hover .detail-arrow {
-    color: var(--accent);
+    color: var(--color-accent);
     transform: translateY(-50%) translate(3px, -3px);
 }
 
@@ -163,22 +156,22 @@
 
 .contact-form-wrapper {
     padding: 40px;
-    background: var(--soft);
+    background: var(--color-surface);
 }
 
 .form-header {
     display: flex;
     justify-content: space-between;
     padding-bottom: 25px;
-    border-bottom: 1px solid var(--line);
-    color: var(--muted);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-secondary);
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.13em;
 }
 
 .form-number {
-    color: var(--accent);
+    color: var(--color-accent);
 }
 
 .contact-form {
@@ -208,7 +201,7 @@
     border-bottom: 1px solid #cfcfcf;
     outline: none;
     background: transparent;
-    color: var(--black);
+    color: var(--color-primary);
     font-family: inherit;
     font-size: 14px;
     transition: border-color 0.2s ease;
@@ -222,7 +215,7 @@
 .form-field input:focus,
 .form-field select:focus,
 .form-field textarea:focus {
-    border-color: var(--black);
+    border-color: var(--color-primary);
 }
 
 .form-field input::placeholder,
@@ -245,7 +238,7 @@
     margin-top: 10px;
     padding: 17px 20px;
     border: none;
-    background: var(--black);
+    background: var(--color-primary);
     color: #ffffff;
     display: flex;
     justify-content: space-between;
@@ -259,8 +252,8 @@
 }
 
 .submit-button:hover {
-    background: var(--accent);
-    color: var(--black);
+    background: var(--color-accent);
+    color: var(--color-primary);
 }
 
 .submit-button span {
@@ -273,7 +266,7 @@
 
 .location-section {
     padding: 80px max(40px, calc((100% - 1280px) / 2)); /* Reduced from 120px */
-    background: var(--black);
+    background: var(--color-primary);
     color: #ffffff;
     display: grid;
     grid-template-columns: 0.7fr 1.3fr;
@@ -309,9 +302,9 @@
 ================================= */
 
 .contact-bottom {
-    max-width: 1280px;
+    width: min(100% - 80px, var(--container-width));
     margin: 0 auto;
-    padding: 80px 40px; /* Reduced from 120px */
+    padding: var(--section-gap) 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -330,7 +323,7 @@
     align-items: center;
     gap: 25px;
     padding: 18px 25px;
-    background: var(--accent);
+    background: var(--color-accent);
     border-radius: 5px;
     font-size: 12px;
     font-weight: 800;
@@ -338,7 +331,7 @@
 }
 
 .whatsapp-button:hover {
-    background: var(--black);
+    background: var(--color-primary);
     color: #ffffff;
 }
 

@@ -10,7 +10,10 @@ function Contact() {
 
         </div>
         <div className="contact-hero-content">
-          <h1>Let's start <em>something.</em></h1>
+          <h1>
+            <span className="title-line">Let's start</span>
+            <em>something.</em>
+          </h1>
         </div>
         <div className="contact-hero-line" />
       </section>

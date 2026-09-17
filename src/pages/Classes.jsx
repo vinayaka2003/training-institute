@@ -126,13 +126,24 @@ function Classes() {
     <div className="classes-container">
       {/* Header */}
       <div className="classes-header">
-        <span className="classes-tag">
-          <Sparkles size={14} /> Upcoming Batches
-        </span>
-        <h1 className="classes-title">Class Schedules & Batches</h1>
-        <p className="classes-subtitle">
-          Flexible schedules, practical labs, and dedicated mentor support.
-        </p>
+        <span className="eyebrow">UPCOMING BATCHES</span>
+        <div className="classes-hero-main">
+          <h1 className="classes-title">
+            <span className="title-line">Class Schedules</span>
+            <em>& Batches.</em>
+          </h1>
+          <div className="hero-side-desc">
+            <p>
+              Flexible schedules.<br />
+              Interactive hands-on labs.<br />
+              Dedicated mentor guidance.
+            </p>
+            <div className="hero-stat">
+              <strong>100%</strong>
+              <span>Live interactive batches</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Interactive Controls (Search & Filter Pills) */}

@@ -1,12 +1,6 @@
 .trainers-page {
-    --black: #111111;
-    --muted: #737373;
-    --line: #dedede;
-    --soft: #f6f5f2;
-    --accent: #f97316;
-
-    background: #ffffff;
-    color: var(--black);
+    background: var(--color-background);
+    color: var(--color-primary);
     overflow: hidden;
 }
 
@@ -26,7 +20,7 @@
 .eyebrow {
     display: inline-block;
 
-    color: var(--accent);
+    color: var(--color-accent);
 
     font-size: 13px; /* Increased for readability */
     font-weight: 800;
@@ -39,9 +33,9 @@
 ================================= */
 
 .trainers-hero {
-    max-width: 1280px;
+    width: min(100% - 80px, var(--container-width));
     margin: 0 auto;
-    padding: 40px 40px 80px;
+    padding: 40px 0 80px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -79,7 +73,7 @@
 .experience-title h2 em,
 .expertise-header h2 em,
 .trainers-cta h2 em {
-    color: var(--accent);
+    color: var(--color-accent);
     font-family: Georgia, "Times New Roman", serif;
     font-weight: 400;
 }
@@ -91,7 +85,7 @@
 .hero-side p {
     margin: 0 0 45px;
 
-    color: var(--muted);
+    color: var(--color-secondary);
 
     font-size: 20px; /* Stronger body text for hero */
     font-weight: 400;
@@ -105,7 +99,7 @@
 
     padding-bottom: 8px;
 
-    border-bottom: 2px solid var(--black); /* Thicker line for emphasis */
+    border-bottom: 2px solid var(--color-primary); /* Thicker line for emphasis */
 
     font-size: 14px;
     font-weight: 700;
@@ -115,8 +109,8 @@
 }
 
 .scroll-link:hover {
-    color: var(--accent);
-    border-color: var(--accent);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
 }
 
 .scroll-link span {
@@ -131,7 +125,7 @@
 .hero-line {
     width: 100%;
     height: 1px;
-    background: var(--line);
+    background: var(--color-border);
 }
 
 /* ==============================
@@ -139,10 +133,9 @@
 ================================= */
 
 .trainers-section {
-    max-width: 1280px;
-
+    width: min(100% - 80px, var(--container-width));
     margin: 0 auto;
-    padding: 120px 40px;
+    padding: var(--section-gap) 0;
 }
 
 .section-top {
@@ -162,15 +155,15 @@
 
 .trainers-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--grid-gap);
 }
 
 .trainer-card {
     cursor: pointer;
     background: #ffffff;
-    border-radius: 20px;
-    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
     overflow: hidden;
     transition: 
         transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -282,7 +275,7 @@
 .trainer-info p {
     margin: 0;
 
-    color: var(--accent); /* Standout role text */
+    color: var(--color-accent); /* Standout role text */
 
     font-size: 13px;
     font-weight: 700;
@@ -293,7 +286,7 @@
 .arrow {
     font-size: 28px;
     font-weight: 300;
-    color: var(--muted);
+    color: var(--color-secondary);
     
     transition:
         transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -301,7 +294,7 @@
 }
 
 .trainer-card:hover .arrow {
-    color: var(--accent);
+    color: var(--color-accent);
     transform: translate(6px, -6px) scale(1.15);
 }
 
@@ -312,7 +305,7 @@
 .experience-section {
     padding: 120px max(40px, calc((100% - 1280px) / 2));
 
-    background: var(--soft);
+    background: var(--color-surface);
 
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -332,13 +325,13 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--color-border);
 }
 
 .stat {
     padding: 25px 20px 0;
 
-    border-right: 1px solid var(--line);
+    border-right: 1px solid var(--color-border);
 }
 
 .stat:first-child {
@@ -359,13 +352,13 @@
 }
 
 .stat strong span {
-    color: var(--accent);
+    color: var(--color-accent);
 }
 
 .stat p {
     margin: 0;
 
-    color: var(--muted);
+    color: var(--color-secondary);
 
     font-size: 14px;
     font-weight: 600;
@@ -378,10 +371,9 @@
 ================================= */
 
 .expertise-section {
-    max-width: 1280px;
-
+    width: min(100% - 80px, var(--container-width));
     margin: 0 auto;
-    padding: 120px 40px;
+    padding: var(--section-gap) 0;
 
     display: grid;
     grid-template-columns: 0.7fr 1.3fr;
@@ -401,7 +393,7 @@
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 20px;
     
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--color-border);
     padding-top: 40px;
 }
 
@@ -416,7 +408,7 @@
     
     background: #ffffff;
     border-radius: 16px;
-    border: 1px solid var(--line);
+    border: 1px solid var(--color-border);
     
     cursor: pointer;
     transition: 
@@ -444,7 +436,7 @@
 }
 
 .skill-name {
-    color: var(--black);
+    color: var(--color-primary);
     
     font-size: 13px;
     font-weight: 700;
@@ -458,12 +450,12 @@
 ================================= */
 
 .trainers-cta {
-    max-width: 1280px;
-
+    width: min(100% - 80px, var(--container-width));
     margin: 0 auto 80px;
-    padding: 100px 40px;
+    padding: var(--section-gap) 40px;
+    border-radius: var(--radius);
 
-    background: var(--black);
+    background: var(--color-primary);
     color: #ffffff;
 
     text-align: center;
@@ -497,7 +489,7 @@
 
     padding: 18px 32px;
 
-    background: var(--accent);
+    background: var(--color-accent);
     color: #111111;
 
     border-radius: 8px;
@@ -614,7 +606,7 @@
         padding: 22px 0;
 
         border-right: none;
-        border-bottom: 1px solid var(--line);
+        border-bottom: 1px solid var(--color-border);
     }
 
     .stat:last-child {

@@ -75,8 +75,11 @@ function Placements() {
         </div>
 
         <div className="placements-hero-content">
-          <h1>Learn.<br /><em>Get placed.</em></h1>
-          <div className="placements-hero-side">
+          <h1 className="reveal">
+            <span className="title-line">Learn.</span>
+            <em>Get placed.</em>
+          </h1>
+          <div className="placements-hero-side reveal reveal-delay-1">
             <p>Skills that open doors.<br />Careers that move forward.</p>
             <div className="hero-stat">
               <strong>10K+</strong>
@@ -129,8 +132,8 @@ function Placements() {
         <div className="students-grid">
           {students.map((student, index) => (
             <Tilt key={student.name} tiltMaxAngleX={8} tiltMaxAngleY={8} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.15} glareColor="white" glarePosition="all" borderRadius="20px">
-              <article className="student-card">
-                <div className="student-image-wrap">
+              <article className={`student-card reveal reveal-delay-${(index % 3) + 1}`}>
+                <div className="student-image-wrap image-hover">
                   <img src={student.image} alt={student.name} />
                   <span className="student-number">0{index + 1}</span>
                   <span className="student-package">{student.package}</span>

@@ -1,49 +1,113 @@
+/* ========================================
+   GLOBAL DESIGN SYSTEM
+======================================== */
+
 :root {
-  --font-primary: 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-heading: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
-  --canvas: #f5f4ef;
-  --ink: #171717;
-  --muted: #6f706d;
-  --accent: #c6532d;
-  --line: #d9d8d1;
-  
-  /* Solid Palette */
-  --solid-orange: #c6532d;
-  --solid-orange-hover: #a84425;
-  --solid-blue: #2563eb;
-  --solid-purple: #7c3aed;
-  --solid-green: #16a34a;
-  --solid-dark: #0f172a;
-  --solid-slate: #334155;
-  --solid-light: #f8fafc;
-  --solid-card: #ffffff;
-  --solid-border: #e2e8f0;
+  /* COLORS */
+  --color-primary: #111111;
+  --color-secondary: #737373;
+  --color-accent: #f97316;
+  --color-background: #ffffff;
+  --color-surface: #f6f5f2;
+  --color-border: #dedede;
+  --color-white: #ffffff;
+
+
+  /* FONT */
+  --font-primary: "Inter", sans-serif;
+  --font-heading: "Inter", sans-serif;
+
+  /* LEGACY ALIASES FOR COMPATIBILITY */
+  --canvas: var(--color-background);
+  --ink: var(--color-primary);
+  --black: var(--color-primary);
+  --muted: var(--color-secondary);
+  --accent: var(--color-accent);
+  --line: var(--color-border);
+  --soft: var(--color-surface);
+
+
+  /* FONT SIZES */
+  --text-xs: 11px;
+  --text-sm: 13px;
+  --text-md: 15px;
+  --text-lg: 18px;
+  --text-xl: 24px;
+
+  --heading-sm: 42px;
+  --heading-md: 56px;
+  --heading-lg: 80px;
+  --heading-xl: 120px;
+
+
+  /* FONT WEIGHTS */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+
+
+  /* SPACING */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 80px;
+  --space-2xl: 120px;
+
+
+  /* CARD & LAYOUT SPACING TOKENS */
+  --card-padding: 24px;
+  --card-gap: 24px;
+  --section-gap: 80px;
+  --grid-gap: 28px;
+  --radius: 6px;
+
+  /* ANIMATION TOKENS */
+  --ease-standard: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration-fast: 0.2s;
+  --duration-normal: 0.4s;
+  --duration-slow: 0.7s;
+
+  /* LAYOUT */
+  --container-width: 1280px;
+  --container-padding: 40px;
 }
+
+
+/* ========================================
+   RESET
+======================================== */
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html, body {
+html {
+  scroll-behavior: smooth;
   overflow-x: hidden;
   width: 100%;
 }
 
 body {
   font-family: var(--font-primary);
-  color: var(--ink);
-  background-color: #020202; /* Footer bottom color to fix bounce gap */
-  margin: 0;
-  padding: 0;
+  background: var(--color-background);
+  color: var(--color-primary);
+  overflow-x: hidden;
+  width: 100%;
+
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 #root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--canvas); /* Main page background */
+  background-color: var(--color-background);
 }
 
 main {
@@ -57,11 +121,339 @@ main {
   }
 }
 
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
   font-family: inherit;
 }
 
-/* Modal Backdrop & Animation Utilities */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+
+/* ========================================
+   TYPOGRAPHY
+======================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-primary);
+  font-family: var(--font-primary);
+}
+
+/* UNIFIED HERO TITLE SYSTEM (1 BLACK LINE TOP + 1 ORANGE LINE BOTTOM) */
+h1,
+.home-title,
+.classes-title,
+.courses-title,
+.hero-main h1,
+.placements-hero h1,
+.contact-hero h1,
+.trainers-page h1,
+.placements-page h1,
+.contact-page h1 {
+  font-family: var(--font-primary) !important;
+  font-size: clamp(34px, 4.2vw, 62px) !important;
+  line-height: 1.05 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.04em !important;
+  color: var(--color-primary) !important;
+  margin-top: 0 !important;
+  margin-bottom: 16px !important;
+}
+
+h1 span.title-line,
+.home-title span.title-line,
+.classes-title span.title-line,
+.courses-title span.title-line {
+  display: block !important;
+  color: var(--color-primary) !important;
+}
+
+h1 em,
+.home-title em,
+.classes-title em,
+.courses-title em,
+.hero-main h1 em,
+.placements-hero h1 em,
+.contact-hero h1 em,
+.trainers-page h1 em,
+.placements-page h1 em,
+.contact-page h1 em {
+  display: block !important;
+  color: var(--color-accent) !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-weight: 400 !important;
+  font-style: italic !important;
+}
+
+/* MASTER LEFT-ALIGNMENT & FULL-WIDTH GUARANTEE FOR ALL 6 HERO HEADERS */
+.home-split-hero,
+.classes-header,
+.courses-header,
+.trainers-hero,
+.placements-hero,
+.contact-hero,
+.hero-left-content {
+  text-align: left !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.home-subtitle,
+.classes-subtitle,
+.courses-subtitle {
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* UNIFIED 2-COLUMN EDITORIAL HERO LAYOUT */
+.classes-hero-main,
+.courses-hero-main,
+.hero-main,
+.placements-hero-content {
+  display: grid !important;
+  grid-template-columns: 1.4fr 0.6fr !important;
+  gap: 60px !important;
+  align-items: end !important;
+  width: 100% !important;
+  margin-top: 12px !important;
+  margin-bottom: 2rem !important;
+}
+
+.hero-side-desc p {
+  color: var(--color-secondary) !important;
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  margin: 0 0 20px 0 !important;
+}
+
+@media (max-width: 900px) {
+
+  .classes-hero-main,
+  .courses-hero-main,
+  .hero-main,
+  .placements-hero-content {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+h2 {
+  font-size: clamp(48px, 5vw, 64px);
+  line-height: 0.93;
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.05em;
+}
+
+h3 {
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: var(--weight-semibold);
+}
+
+p {
+  color: var(--color-secondary);
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: var(--weight-regular);
+}
+
+
+/* ========================================
+   COMMON CLASSES & DESKTOP SYSTEM
+======================================== */
+
+.eyebrow {
+  color: var(--color-accent);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-extrabold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.container,
+.home-container,
+.classes-container,
+.courses-container,
+.trainers-hero,
+.placements-hero,
+.contact-hero {
+  width: min(calc(100% - (var(--container-padding) * 2)),
+      var(--container-width)) !important;
+  margin: 0 auto !important;
+  padding: 40px 0 80px !important;
+  box-sizing: border-box !important;
+}
+
+section,
+.section {
+  padding: 120px 0;
+}
+
+.section-small {
+  padding: 80px 0;
+}
+
+.section-large {
+  padding: 160px 0;
+}
+
+.card {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 24px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 60px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* BUTTON SYSTEM */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.btn-accent {
+  background: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.btn-accent:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+
+/* ========================================
+   TABLET & SMALL DESKTOP BREAKPOINT
+======================================== */
+
+@media (max-width: 1024px) {
+  .container {
+    width: min(100% - 48px, var(--container-width));
+  }
+}
+
+
+/* ========================================
+   MOBILE UI
+======================================== */
+
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: min(100% - 40px, var(--container-width));
+  }
+
+  section {
+    padding: 80px 0;
+  }
+
+  h1 {
+    font-size: 60px;
+    line-height: 0.9;
+  }
+
+  h2 {
+    font-size: 48px;
+    line-height: 0.95;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .two-column {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .card-image {
+    height: 240px;
+  }
+}
+
+
+/* ========================================
+   MODAL UTILITIES
+======================================== */
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -77,13 +469,13 @@ button, input, textarea, select {
 }
 
 .modal-content {
-  background: #ffffff;
+  background: var(--color-white);
   border-radius: 20px;
   max-width: 560px;
   width: 100%;
   padding: 2.2rem;
   box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.25);
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
   position: relative;
   animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   max-height: 90vh;
@@ -91,8 +483,13 @@ button, input, textarea, select {
 }
 
 @keyframes modalFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes modalSlideUp {
@@ -100,6 +497,7 @@ button, input, textarea, select {
     opacity: 0;
     transform: translateY(20px) scale(0.96);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -110,7 +508,7 @@ button, input, textarea, select {
   position: absolute;
   top: 20px;
   right: 20px;
-  background: #f1f5f9;
+  background: var(--color-surface);
   border: none;
   width: 36px;
   height: 36px;
@@ -118,12 +516,164 @@ button, input, textarea, select {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #64748b;
+  color: var(--color-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .modal-close-btn:hover {
-  background: #0f172a;
-  color: #ffffff;
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* ========================================
+   ANIMATION SYSTEM
+======================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: revealUp 0.7s var(--ease-standard) forwards;
+}
+
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.reveal-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.reveal-delay-3 {
+  animation-delay: 0.3s;
+}
+
+.reveal-delay-4 {
+  animation-delay: 0.4s;
+}
+
+.image-hover {
+  overflow: hidden;
+}
+
+.image-hover img {
+  transition: transform var(--duration-slow) var(--ease-standard);
+}
+
+.image-hover:hover img {
+  transform: scale(1.04);
+}
+
+.animated-link {
+  position: relative;
+}
+
+.animated-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.animated-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================
+   MASTER PAGINATION SYSTEM
+   ========================================= */
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: var(--color-surface);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination-numbers {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagination-num {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-secondary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-num:hover:not(.active) {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.pagination-num.active {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(17, 17, 17, 0.15);
 }

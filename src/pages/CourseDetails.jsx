@@ -8,6 +8,8 @@ import {
   CheckCircle2,
   ChevronDown,
   ChevronUp,
+  ChevronLeft,
+  ChevronRight,
   X,
   Send,
   Layers,
@@ -18,6 +20,8 @@ import "../styles/courses.css";
 function Courses() {
   const [selectedLevel, setSelectedLevel] = useState("All");
   const [selectedDomain, setSelectedDomain] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 2;
 
   // Track which course has its curriculum expanded
   const [expandedCurriculum, setExpandedCurriculum] = useState(null);
@@ -111,6 +115,21 @@ function Courses() {
     return matchesLevel && matchesDomain;
   });
 
+  const totalPages = Math.ceil(filteredCourses.length / itemsPerPage);
+  const indexOfLastCourse = currentPage * itemsPerPage;
+  const indexOfFirstCourse = indexOfLastCourse - itemsPerPage;
+  const currentCourses = filteredCourses.slice(indexOfFirstCourse, indexOfLastCourse);
+
+  const handleSelectLevel = (lvl) => {
+    setSelectedLevel(lvl);
+    setCurrentPage(1);
+  };
+
+  const handleSelectDomain = (dom) => {
+    setSelectedDomain(dom);
+    setCurrentPage(1);
+  };
+
   const toggleCurriculum = (id) => {
     setExpandedCurriculum(expandedCurriculum === id ? null : id);
   };
@@ -136,13 +155,24 @@ function Courses() {
     <div className="courses-container">
       {/* Header Area */}
       <div className="courses-header">
-        <span className="courses-tag">
-          <Sparkles size={14} /> Curated Programs
-        </span>
-        <h1 className="courses-title">Explore Our Tech Programs</h1>
-        <p className="courses-subtitle">
-          Focused programs, practical projects, and dedicated mentor support.
-        </p>
+        <span className="eyebrow">CURATED PROGRAMS</span>
+        <div className="courses-hero-main">
+          <h1 className="courses-title">
+            <span className="title-line">Explore Our</span>
+            <em>Tech Programs.</em>
+          </h1>
+          <div className="hero-side-desc">
+            <p>
+              Project-driven learning.<br />
+              Industry-vetted stack.<br />
+              1-on-1 code reviews.
+            </p>
+            <div className="hero-stat">
+              <strong>25+</strong>
+              <span>Production-grade programs</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Interactive Level & Domain Filters */}
@@ -153,7 +183,7 @@ function Courses() {
             <button
               key={lvl}
               className={`course-filter-chip ${selectedLevel === lvl ? "active" : ""}`}
-              onClick={() => setSelectedLevel(lvl)}
+              onClick={() => handleSelectLevel(lvl)}
             >
               {lvl === "All" ? "All Levels" : lvl}
             </button>
@@ -166,7 +196,7 @@ function Courses() {
             <button
               key={dom}
               className={`course-filter-chip ${selectedDomain === dom ? "active" : ""}`}
-              onClick={() => setSelectedDomain(dom)}
+              onClick={() => handleSelectDomain(dom)}
             >
               {dom}
             </button>
@@ -176,7 +206,7 @@ function Courses() {
 
       {/* Courses Grid */}
       <div className="courses-grid">
-        {filteredCourses.map((c) => {
+        {currentCourses.map((c) => {
           const isCurriculumOpen = expandedCurriculum === c.id;
           return (
             <Tilt key={c.id} tiltMaxAngleX={5} tiltMaxAngleY={5} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="white" glarePosition="all" borderRadius="24px">
@@ -245,6 +275,45 @@ function Courses() {
           );
         })}
       </div>
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="pagination-container">
+          <button
+            className="pagination-btn"
+            disabled={currentPage === 1}
+            onClick={() => {
+              setCurrentPage((prev) => Math.max(prev - 1, 1));
+            }}
+          >
+            <ChevronLeft size={16} /> Previous
+          </button>
+
+          <div className="pagination-numbers">
+            {Array.from({ length: totalPages }, (_, idx) => idx + 1).map((pageNum) => (
+              <button
+                key={pageNum}
+                className={`pagination-num ${currentPage === pageNum ? "active" : ""}`}
+                onClick={() => {
+                  setCurrentPage(pageNum);
+                }}
+              >
+                {pageNum}
+              </button>
+            ))}
+          </div>
+
+          <button
+            className="pagination-btn"
+            disabled={currentPage === totalPages}
+            onClick={() => {
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+            }}
+          >
+            Next <ChevronRight size={16} />
+          </button>
+        </div>
+      )}
 
       {/* Course Details Preview & Enrollment Modal */}
       {activeCourseModal && (

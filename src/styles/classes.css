@@ -1,57 +1,62 @@
 .classes-container {
-  max-width: 1200px;
+  width: min(calc(100% - (var(--container-padding) * 2)), var(--container-width));
   margin: 0 auto;
-  padding: 30px 24px 80px;
+  padding: 40px 0 80px;
   min-height: 70vh;
   font-family: var(--font-primary);
 }
 
 .classes-header {
-  text-align: center;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   margin-bottom: 2.8rem;
 }
 
 .classes-tag {
-  background-color: #ea580c;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 0.88rem;
-  padding: 7px 20px;
-  border-radius: 24px;
+  color: var(--color-accent);
+  font-weight: 800;
+  font-size: 11px;
+  padding: 0;
+  border-radius: 0;
   border: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 1.2rem;
-  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+  box-shadow: none;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .classes-title {
-  font-family: var(--font-heading);
-  font-size: 3rem;
-  font-weight: 900;
-  color: #0f172a;
-  line-height: 1.2;
+  font-family: var(--font-primary);
+  font-size: clamp(72px, 7vw, 96px);
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 0.88;
   margin-bottom: 1rem;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.06em;
 }
 
 .classes-subtitle {
-  color: #64748b;
-  font-size: 1.12rem;
+  color: var(--color-secondary);
+  font-size: 15px;
   max-width: 640px;
-  margin: 0 auto;
-  line-height: 1.65;
+  margin: 0;
+  text-align: left;
+  line-height: 1.7;
 }
 
 /* =========================================
    INTERACTIVE CONTROLS (SEARCH & FILTER TABS)
    ========================================= */
 .classes-controls-panel {
-  background: #f8fafc;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 20px;
-  padding: 1.6rem 2rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 24px;
   margin-bottom: 2.5rem;
   display: flex;
   flex-direction: column;
@@ -140,10 +145,10 @@
   grid-template-columns: 1fr auto;
   align-items: center;
   background-color: #ffffff;
-  padding: 2rem 2.4rem;
-  border-radius: 18px;
-  border: 1.5px solid #e2e8f0;
-  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.04);
+  padding: 24px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  box-shadow: none;
   gap: 2rem;
   cursor: pointer;
   touch-action: manipulation;
@@ -174,7 +179,7 @@
 }
 
 .batch-course-name {
-  font-family: var(--font-heading);
+  font-family: var(--font-primary);
   font-size: 1.45rem;
   font-weight: 800;
   color: #0f172a;

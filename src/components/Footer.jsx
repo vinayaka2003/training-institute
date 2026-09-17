@@ -12,6 +12,7 @@ function Footer() {
         {/* Brand & Newsletter Section */}
         <div className="footer-brand">
           <Link to="/" className="footer-logo">
+            <img src="/brand-logo.jpg" alt="TrainingInstitute Logo" className="footer-logo-icon" />
             <span className="logo-text">Training<span className="logo-highlight">Institute</span></span>
           </Link>
           <p className="brand-tagline">

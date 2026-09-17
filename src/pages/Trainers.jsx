@@ -1,6 +1,7 @@
-import "../styles/trainers.css";
+import { useState } from "react";
 import Tilt from "react-parallax-tilt";
-
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import "../styles/trainers.css";
 
 const trainers = [
   {
@@ -30,6 +31,20 @@ const trainers = [
     experience: "6+ Years",
     image:
       "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=900&q=85",
+  },
+  {
+    name: "Vikramaditya Das",
+    role: "Cloud & DevOps",
+    experience: "10+ Years",
+    image:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=85",
+  },
+  {
+    name: "Ananya Deshmukh",
+    role: "Cyber Security & Systems",
+    experience: "8+ Years",
+    image:
+      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=85",
   },
 ];
 
@@ -77,6 +92,14 @@ const skills = [
 ];
 
 function Trainers() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
+
+  const totalPages = Math.ceil(trainers.length / itemsPerPage);
+  const indexOfLastTrainer = currentPage * itemsPerPage;
+  const indexOfFirstTrainer = indexOfLastTrainer - itemsPerPage;
+  const currentTrainers = trainers.slice(indexOfFirstTrainer, indexOfLastTrainer);
+
   return (
     <div className="trainers-page">
 
@@ -84,18 +107,15 @@ function Trainers() {
       <section className="trainers-hero">
         <div className="hero-top">
           <span className="eyebrow">TRAINERS & MENTORS</span>
-
-
         </div>
 
         <div className="hero-main">
-          <h1>
-            Learn from
-            <br />
+          <h1 className="reveal">
+            <span className="title-line">Learn from</span>
             <em>people who build.</em>
           </h1>
 
-          <div className="hero-side">
+          <div className="hero-side reveal reveal-delay-1">
             <p>
               Industry experience.
               <br />
@@ -104,7 +124,7 @@ function Trainers() {
               Real mentorship.
             </p>
 
-            <a href="#trainers" className="scroll-link">
+            <a href="#trainers" className="scroll-link animated-link">
               Meet the team
               <span>↓</span>
             </a>
@@ -128,11 +148,11 @@ function Trainers() {
         </div>
 
         <div className="trainers-grid">
-          {trainers.map((trainer, index) => (
+          {currentTrainers.map((trainer, index) => (
             <Tilt key={trainer.name} tiltMaxAngleX={8} tiltMaxAngleY={8} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.15} glareColor="white" glarePosition="all" borderRadius="20px">
-              <article className="trainer-card">
+              <article className={`trainer-card reveal reveal-delay-${(index % 3) + 1}`}>
 
-                <div className="trainer-image-wrap">
+                <div className="trainer-image-wrap image-hover">
                   <img
                     src={trainer.image}
                     alt={trainer.name}
@@ -140,7 +160,7 @@ function Trainers() {
                   />
 
                   <span className="trainer-number">
-                    0{index + 1}
+                    0{(currentPage - 1) * itemsPerPage + index + 1}
                   </span>
 
                   <span className="trainer-experience">
@@ -161,6 +181,45 @@ function Trainers() {
             </Tilt>
           ))}
         </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="pagination-container">
+            <button
+              className="pagination-btn"
+              disabled={currentPage === 1}
+              onClick={() => {
+                setCurrentPage((prev) => Math.max(prev - 1, 1));
+              }}
+            >
+              <ChevronLeft size={16} /> Previous
+            </button>
+
+            <div className="pagination-numbers">
+              {Array.from({ length: totalPages }, (_, idx) => idx + 1).map((pageNum) => (
+                <button
+                  key={pageNum}
+                  className={`pagination-num ${currentPage === pageNum ? "active" : ""}`}
+                  onClick={() => {
+                    setCurrentPage(pageNum);
+                  }}
+                >
+                  {pageNum}
+                </button>
+              ))}
+            </div>
+
+            <button
+              className="pagination-btn"
+              disabled={currentPage === totalPages}
+              onClick={() => {
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+              }}
+            >
+              Next <ChevronRight size={16} />
+            </button>
+          </div>
+        )}
       </section>
 
       {/* EXPERIENCE */}

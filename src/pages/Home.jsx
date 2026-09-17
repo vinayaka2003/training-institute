@@ -209,11 +209,10 @@ function Home() {
       {/* 1. Interactive Split Hero Section */}
       <section className="home-split-hero">
         <div className="hero-left-content">
-          <span className="home-tag">
-            <span className="live-pulse-dot"></span> Spring 2026 Admissions Open
-          </span>
+          <span className="eyebrow">SPRING 2026 ADMISSIONS OPEN</span>
           <h1 className="home-title">
-            Master Modern Tech Skills with <span>Hands-on Innovation</span>
+            <span className="title-line">Master Tech Skills</span>
+            <em>Build your future.</em>
           </h1>
           <p className="home-subtitle">
             Industry-vetted curriculum, daily live coding labs, and direct mentorship tailored to prepare aspiring engineers for high-impact developer roles.
