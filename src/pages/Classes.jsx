@@ -122,6 +122,14 @@ function Classes() {
     setReservationSuccess(true);
   };
 
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
+    e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
     <div className="classes-container">
       {/* Header */}
@@ -148,118 +156,119 @@ function Classes() {
 
       {/* Interactive Controls (Search & Filter Pills) */}
       <div className="classes-controls-panel">
-        <div className="search-input-wrap">
-          <Search size={18} className="search-icon-pos" />
-          <input
-            type="text"
-            placeholder="Search classes..."
-            className="classes-search-input"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-
-        <div className="filter-pills-row">
-          <span className="filter-label">Schedule:</span>
-          {["All", "Weekday", "Weekend"].map((t) => (
-            <button
-              key={t}
-              className={`filter-btn ${selectedScheduleType === t ? "active" : ""}`}
-              onClick={() => setSelectedScheduleType(t)}
-            >
-              {t === "All" ? "All Schedules" : `${t} Batches`}
-            </button>
-          ))}
-
-          <span className="filter-label" style={{ marginLeft: "1rem" }}>
-            Mode:
-          </span>
-          {["All", "Classroom", "Online", "Hybrid"].map((m) => (
-            <button
-              key={m}
-              className={`filter-btn ${selectedMode === m ? "active" : ""}`}
-              onClick={() => setSelectedMode(m)}
-            >
-              {m}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Batch Cards List */}
-      <div className="classes-list">
-        {filteredSchedule.length === 0 ? (
-          <div style={{ textAlign: "center", padding: "3rem", background: "#f8fafc", borderRadius: "18px" }}>
-            <AlertCircle size={36} color="#ea580c" style={{ marginBottom: "1rem" }} />
-            <h3 style={{ fontSize: "1.3rem", fontWeight: "800", color: "#0f172a" }}>No Batches Found</h3>
-            <p style={{ color: "#64748b" }}>Try adjusting your search criteria or schedule filters.</p>
+          <div className="search-input-wrap">
+            <Search size={18} className="search-icon-pos" />
+            <input
+              type="text"
+              placeholder="Search classes..."
+              className="classes-search-input"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
-        ) : (
-          filteredSchedule.map((item, idx) => (
-            <div
-              key={item.id}
-              className={`batch-card ${touchedCard === idx ? "is-touched" : ""}`}
-              onTouchStart={() => setTouchedCard(idx)}
-              onTouchEnd={() => setTouchedCard(null)}
-              onTouchCancel={() => setTouchedCard(null)}
-            >
-              <div className="batch-main-info">
-                <h3 className="batch-course-name">{item.course}</h3>
 
-                <div className="batch-info">
-                  <span>
-                    <Calendar size={14} style={{ marginRight: "4px", verticalAlign: "middle" }} />
-                    <strong>{item.batchType}</strong>
-                  </span>
-                  <span>•</span>
-                  <span>
-                    <Clock size={14} style={{ marginRight: "4px", verticalAlign: "middle" }} />
-                    <strong>{item.time}</strong>
-                  </span>
-                </div>
+          <div className="filter-pills-row">
+            <span className="filter-label">Schedule:</span>
+            {["All", "Weekday", "Weekend"].map((t) => (
+              <button
+                key={t}
+                className={`filter-btn ${selectedScheduleType === t ? "active" : ""}`}
+                onClick={() => setSelectedScheduleType(t)}
+              >
+                {t === "All" ? "All Schedules" : `${t} Batches`}
+              </button>
+            ))}
 
-                <div className="batch-meta-row">
-                  <span className="batch-mode-tag">
-                    <Laptop size={13} />
-                    {item.mode}
-                  </span>
-                  <span className="batch-perk-tag">
-                    <Sparkles size={13} strokeWidth={2.2} />
-                    {item.perk}
-                  </span>
-                </div>
+            <span className="filter-label" style={{ marginLeft: "1rem" }}>
+              Mode:
+            </span>
+            {["All", "Classroom", "Online", "Hybrid"].map((m) => (
+              <button
+                key={m}
+                className={`filter-btn ${selectedMode === m ? "active" : ""}`}
+                onClick={() => setSelectedMode(m)}
+              >
+                {m}
+              </button>
+            ))}
+          </div>
+        </div>
 
-                {/* Seat Progress Bar */}
-                <div className="seat-progress-wrap">
-                  <div className="seat-label-row">
-                    <span>Cohort Filling: {item.percentFilled}%</span>
-                    <span className="seat-warning-text">Only {item.seatsLeft} seats left!</span>
-                  </div>
-                  <div className="seat-progress-track">
-                    <div
-                      className="seat-progress-fill"
-                      style={{ width: `${item.percentFilled}%` }}
-                    ></div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="batch-action-area">
-                <span className={`batch-status-badge ${item.statusType}`}>
-                  <CheckCircle2 size={13} />
-                  {item.status}
-                </span>
-                <button
-                  className="batch-reserve-btn"
-                  onClick={() => handleOpenReservation(item)}
-                >
-                  <Users size={16} /> Reserve Seat
-                </button>
-              </div>
+        {/* Batch Cards List */}
+        <div className="classes-list">
+          {filteredSchedule.length === 0 ? (
+            <div style={{ textAlign: "center", padding: "3rem", background: "#f8fafc", borderRadius: "18px" }}>
+              <AlertCircle size={36} color="#ea580c" style={{ marginBottom: "1rem" }} />
+              <h3 style={{ fontSize: "1.3rem", fontWeight: "800", color: "#0f172a" }}>No Batches Found</h3>
+              <p style={{ color: "#64748b" }}>Try adjusting your search criteria or schedule filters.</p>
             </div>
-          ))
-        )}
-      </div>
+          ) : (
+            filteredSchedule.map((item, idx) => (
+              <div
+                key={item.id}
+                className={`batch-card spotlight-card ${touchedCard === idx ? "is-touched" : ""}`}
+                onMouseMove={handleMouseMove}
+                onTouchStart={() => setTouchedCard(idx)}
+                onTouchEnd={() => setTouchedCard(null)}
+                onTouchCancel={() => setTouchedCard(null)}
+              >
+                <div className="batch-main-info">
+                  <h3 className="batch-course-name">{item.course}</h3>
+
+                  <div className="batch-info">
+                    <span>
+                      <Calendar size={14} style={{ marginRight: "4px", verticalAlign: "middle" }} />
+                      <strong>{item.batchType}</strong>
+                    </span>
+                    <span>•</span>
+                    <span>
+                      <Clock size={14} style={{ marginRight: "4px", verticalAlign: "middle" }} />
+                      <strong>{item.time}</strong>
+                    </span>
+                  </div>
+
+                  <div className="batch-meta-row">
+                    <span className="batch-mode-tag">
+                      <Laptop size={13} />
+                      {item.mode}
+                    </span>
+                    <span className="batch-perk-tag">
+                      <Sparkles size={13} strokeWidth={2.2} />
+                      {item.perk}
+                    </span>
+                  </div>
+
+                  {/* Seat Progress Bar */}
+                  <div className="seat-progress-wrap">
+                    <div className="seat-label-row">
+                      <span>Cohort Filling: {item.percentFilled}%</span>
+                      <span className="seat-warning-text">Only {item.seatsLeft} seats left!</span>
+                    </div>
+                    <div className="seat-progress-track">
+                      <div
+                        className="seat-progress-fill"
+                        style={{ width: `${item.percentFilled}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="batch-action-area">
+                  <span className={`batch-status-badge ${item.statusType}`}>
+                    <CheckCircle2 size={13} />
+                    {item.status}
+                  </span>
+                  <button
+                    className="batch-reserve-btn btn-magnetic"
+                    onClick={() => handleOpenReservation(item)}
+                  >
+                    <Users size={16} /> Reserve Seat
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
 
       {/* Interactive Reservation Modal Dialog */}
       {activeModalBatch && (

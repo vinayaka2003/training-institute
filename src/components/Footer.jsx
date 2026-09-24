@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FcPhone, FcFeedback, FcMindMap, FcGlobe } from "react-icons/fc";
+import { FcPhone, FcFeedback, FcGlobe } from "react-icons/fc";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaGithub } from "react-icons/fa";
 import "../styles/footer.css";
 

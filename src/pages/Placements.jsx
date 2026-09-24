@@ -65,6 +65,14 @@ const steps = [
 ];
 
 function Placements() {
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
+    e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
     <div className="placements-page">
       {/* HERO */}
@@ -102,19 +110,19 @@ function Placements() {
           <h2>Your career<br /><em>starts here.</em></h2>
         </div>
         <div className="numbers-grid">
-          <div className="big-number">
+          <div className="big-number spotlight-card" onMouseMove={handleMouseMove}>
             <strong>10K<span>+</span></strong>
             <p>Students trained</p>
           </div>
-          <div className="big-number">
+          <div className="big-number spotlight-card" onMouseMove={handleMouseMove}>
             <strong>500<span>+</span></strong>
             <p>Hiring partners</p>
           </div>
-          <div className="big-number">
+          <div className="big-number spotlight-card" onMouseMove={handleMouseMove}>
             <strong>8.5<span>LPA</span></strong>
             <p>Highest package</p>
           </div>
-          <div className="big-number">
+          <div className="big-number spotlight-card" onMouseMove={handleMouseMove}>
             <strong>92<span>%</span></strong>
             <p>Placement assistance</p>
           </div>
@@ -131,8 +139,8 @@ function Placements() {
 
         <div className="students-grid">
           {students.map((student, index) => (
-            <Tilt key={student.name} tiltMaxAngleX={8} tiltMaxAngleY={8} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.15} glareColor="white" glarePosition="all" borderRadius="20px">
-              <article className={`student-card reveal reveal-delay-${(index % 3) + 1}`}>
+            <Tilt key={student.name} tiltMaxAngleX={6} tiltMaxAngleY={6} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.12} glareColor="white" glarePosition="all" borderRadius="20px">
+              <article className={`student-card spotlight-card reveal reveal-delay-${(index % 3) + 1}`} onMouseMove={handleMouseMove}>
                 <div className="student-image-wrap image-hover">
                   <img src={student.image} alt={student.name} />
                   <span className="student-number">0{index + 1}</span>
@@ -159,8 +167,8 @@ function Placements() {
         </div>
         <div className="companies-grid">
           {companies.map((company) => (
-            <Tilt key={company.name} tiltMaxAngleX={15} tiltMaxAngleY={15} perspective={1000} scale={1.05} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.2} glareColor="white" glarePosition="all" borderRadius="16px">
-              <div className="company-card" style={{ "--hover-color": company.color }}>
+            <Tilt key={company.name} tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={1000} scale={1.03} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.15} glareColor="white" glarePosition="all" borderRadius="16px">
+              <div className="company-card spotlight-card" style={{ "--hover-color": company.color }} onMouseMove={handleMouseMove}>
                 <company.icon className="company-icon" />
                 <span className="company-name">{company.name}</span>
               </div>
@@ -193,7 +201,7 @@ function Placements() {
         <span className="eyebrow">YOUR TURN</span>
         <h2>Ready to build<br /><em>your career?</em></h2>
         <p>Start learning today and take the next step toward your goals.</p>
-        <a href="/classes" className="placement-cta-button">Explore Courses <span>→</span></a>
+        <a href="/classes" className="placement-cta-button btn-magnetic">Explore Courses <span>→</span></a>
       </section>
     </div>
   );

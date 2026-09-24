@@ -1,8 +1,7 @@
 .courses-container {
   width: min(calc(100% - (var(--container-padding) * 2)), var(--container-width));
   margin: 0 auto;
-  padding: 40px 0 80px;
-  min-height: 70vh;
+  padding: 0 0 48px;
   font-family: var(--font-primary);
 }
 
@@ -11,7 +10,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 2.8rem;
+  margin-bottom: 2rem;
+  padding-top: 12px;
 }
 
 .courses-tag {

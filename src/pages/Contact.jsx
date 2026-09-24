@@ -1,135 +1,220 @@
+import { useForm, ValidationError } from "@formspree/react";
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, MessageSquare, ExternalLink, Sparkles } from "lucide-react";
 import "../styles/contact.css";
 
 function Contact() {
+  const [state, handleSubmit] = useForm("mppwzrrn");
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
+    e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
-    <div className="contact-page">
-      {/* HERO */}
+    <div className="contact-container">
+      {/* HERO SECTION */}
       <section className="contact-hero">
-        <div className="contact-hero-top">
-          <span className="eyebrow">CONTACT</span>
+        <div className="contact-badge">
+          <span className="live-dot" />
+          <span>DIRECT SUPPORT & ADMISSIONS</span>
+        </div>
 
-        </div>
-        <div className="contact-hero-content">
-          <h1>
-            <span className="title-line">Let's start</span>
-            <em>something.</em>
-          </h1>
-        </div>
-        <div className="contact-hero-line" />
+        <h1 className="contact-title">
+          Let’s start a <em>conversation.</em>
+        </h1>
+
+        <p className="contact-subtitle">
+          Have questions about our tech courses, upcoming batches, career support, or fee structure? Speak directly with our program advisors.
+        </p>
       </section>
 
-      {/* CONTACT CONTENT */}
-      <section className="contact-main">
-        {/* LEFT */}
-        <div className="contact-info">
-          <span className="eyebrow">GET IN TOUCH</span>
-          <h2>Your next<br /><em>step.</em></h2>
-          <p className="contact-description">
-            Speak with our team about courses, batches, fees, placements or anything else you want to know.
-          </p>
-          <div className="contact-details">
-            <a href="tel:+919876543210" className="contact-detail">
-              <span className="detail-label">PHONE</span>
-              <strong>+91 98765 43210</strong>
-              <span className="detail-arrow">↗</span>
+      {/* MAIN GRID */}
+      <section className="contact-grid">
+        {/* LEFT COLUMN: TOUCHPOINTS */}
+        <div className="contact-info-col">
+          <div className="info-cards-stack">
+            <a href="tel:+919876543210" className="contact-touchpoint-card spotlight-card" onMouseMove={handleMouseMove}>
+              <div className="touchpoint-icon">
+                <Phone size={18} />
+              </div>
+              <div className="touchpoint-details">
+                <span className="touchpoint-label">TALK TO ADVISORS</span>
+                <strong className="touchpoint-value">+91 98765 43210</strong>
+                <span className="touchpoint-sub">Mon – Sat · 9:00 AM – 7:00 PM</span>
+              </div>
+              <span className="touchpoint-action-tag">Call Now</span>
             </a>
-            <a href="mailto:info@edutech.com" className="contact-detail">
-              <span className="detail-label">EMAIL</span>
-              <strong>info@edutech.com</strong>
-              <span className="detail-arrow">↗</span>
+
+            <a href="mailto:info@edutech.com" className="contact-touchpoint-card spotlight-card" onMouseMove={handleMouseMove}>
+              <div className="touchpoint-icon">
+                <Mail size={18} />
+              </div>
+              <div className="touchpoint-details">
+                <span className="touchpoint-label">EMAIL ENQUIRIES</span>
+                <strong className="touchpoint-value">info@edutech.com</strong>
+                <span className="touchpoint-sub">Typical response within 2 hours</span>
+              </div>
+              <span className="touchpoint-action-tag">Send Email</span>
             </a>
-            <div className="contact-detail">
-              <span className="detail-label">LOCATION</span>
-              <strong>Bengaluru, Karnataka</strong>
-              <span className="detail-arrow">↗</span>
+
+            <div className="contact-touchpoint-card static spotlight-card" onMouseMove={handleMouseMove}>
+              <div className="touchpoint-icon">
+                <MapPin size={18} />
+              </div>
+              <div className="touchpoint-details">
+                <span className="touchpoint-label">MAIN CAMPUS</span>
+                <strong className="touchpoint-value">Bengaluru, Karnataka</strong>
+                <span className="touchpoint-sub">Tech Park Campus, HSR Layout</span>
+              </div>
             </div>
+
+            <div className="contact-touchpoint-card static spotlight-card" onMouseMove={handleMouseMove}>
+              <div className="touchpoint-icon">
+                <Clock size={18} />
+              </div>
+              <div className="touchpoint-details">
+                <span className="touchpoint-label">COUNSELING HOURS</span>
+                <strong className="touchpoint-value">Monday to Saturday</strong>
+                <span className="touchpoint-sub">Walk-ins welcome from 10 AM</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="response-time-banner">
+            <Sparkles size={16} className="sparkle-icon" />
+            <span>Fast track admissions: Get instant callback within 30 minutes during work hours.</span>
           </div>
         </div>
 
-        {/* RIGHT FORM */}
-        <div className="contact-form-wrapper" id="contact-form">
+        {/* RIGHT COLUMN: ENQUIRY FORM */}
+        <div className="contact-form-wrapper spotlight-card" id="contact-form" onMouseMove={handleMouseMove}>
           <div className="form-header">
-            <span className="form-number">01</span>
-            <span>SEND AN ENQUIRY</span>
+            <div className="form-pill">
+              <MessageSquare size={13} /> Admission Inquiry
+            </div>
+            <h2>Send us a message</h2>
+            <p>Fill out the details below and an expert counselor will guide you.</p>
           </div>
-          <form className="contact-form">
-            <div className="form-field">
-              <label htmlFor="name">YOUR NAME</label>
-              <input id="name" type="text" placeholder="Enter your name" />
-            </div>
-            <div className="form-row">
-              <div className="form-field">
-                <label htmlFor="phone">PHONE</label>
-                <input id="phone" type="tel" placeholder="+91" />
+
+          {state.succeeded ? (
+            <div className="contact-success-state">
+              <div className="success-icon-wrap">
+                <CheckCircle2 size={36} />
               </div>
-              <div className="form-field">
-                <label htmlFor="email">EMAIL</label>
-                <input id="email" type="email" placeholder="you@example.com" />
+              <h3>Enquiry Submitted Successfully!</h3>
+              <p>Thank you for reaching out. Our team will contact you via phone or email shortly.</p>
+            </div>
+          ) : (
+            <form className="contact-form-minimal" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="name">FULL NAME</label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  placeholder="e.g. Rahul Sharma"
+                  required
+                />
+                <ValidationError prefix="Name" field="name" errors={state.errors} />
               </div>
-            </div>
-            <div className="form-field">
-              <label htmlFor="course">INTERESTED COURSE</label>
-              <select id="course" defaultValue="">
-                <option value="" disabled>Select a course</option>
-                <option value="full-stack">Full Stack Development</option>
-                <option value="data-science">Data Science & AI</option>
-                <option value="java">Java Development</option>
-                <option value="python">Python Development</option>
-                <option value="uiux">UI/UX Design</option>
-              </select>
-            </div>
-            <div className="form-field">
-              <label htmlFor="message">MESSAGE</label>
-              <textarea id="message" rows="4" placeholder="Tell us what you're looking for..." />
-            </div>
-            <button type="submit" className="submit-button">
-              Send Enquiry <span>→</span>
-            </button>
-          </form>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="phone">PHONE NUMBER</label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    name="phone"
+                    placeholder="+91 98765 43210"
+                    required
+                  />
+                  <ValidationError prefix="Phone" field="phone" errors={state.errors} />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="email">EMAIL ADDRESS</label>
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="name@example.com"
+                    required
+                  />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="course">COURSE INTEREST</label>
+                <select id="course" name="course" defaultValue="" required>
+                  <option value="" disabled>Select your preferred course</option>
+                  <option value="full-stack">Full Stack Web Development</option>
+                  <option value="data-science">Data Science & AI</option>
+                  <option value="java">Java Enterprise Architecture</option>
+                  <option value="python">Python Software Engineering</option>
+                  <option value="devops">DevOps & Cloud Computing</option>
+                </select>
+                <ValidationError prefix="Course" field="course" errors={state.errors} />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="message">YOUR MESSAGE</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="3"
+                  placeholder="Tell us about your background or questions..."
+                  required
+                />
+                <ValidationError prefix="Message" field="message" errors={state.errors} />
+              </div>
+
+              <button type="submit" className="contact-submit-btn btn-magnetic" disabled={state.submitting}>
+                {state.submitting ? (
+                  "Sending Message..."
+                ) : (
+                  <>
+                    <Send size={15} /> Send Message
+                  </>
+                )}
+              </button>
+            </form>
+          )}
         </div>
       </section>
 
-      {/* MAP / LOCATION */}
-      <section className="location-section">
-        <div className="location-header">
-          <span className="eyebrow">FIND US</span>
-          <h2>Come say<br /><em>hello.</em></h2>
-        </div>
-        <div className="map-wrapper" style={{ 
-          position: 'relative', 
-          padding: '2px', 
-          background: 'linear-gradient(135deg, rgba(234, 88, 12, 0.4), rgba(255,255,255,0.05))',
-          borderRadius: '24px', 
-          boxShadow: '0 30px 60px rgba(0,0,0,0.3)'
-        }}>
-          <div className="map-card" style={{ padding: 0, overflow: 'hidden', borderRadius: '22px', background: '#111' }}>
-            <iframe 
-              src="https://maps.google.com/maps?q=13.117886583704756,77.63248284960935&z=15&output=embed"
-              width="100%" 
-              height="100%" 
-              style={{ 
-                border: 0, 
-                minHeight: '450px', 
-                filter: 'invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%) grayscale(20%)'
-              }}
-              allowFullScreen="" 
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Google Map Location"
-            ></iframe>
+      {/* MAP SECTION */}
+      <section className="contact-map-block">
+        <div className="map-block-header">
+          <div>
+            <span className="map-kicker">CAMPUS LOCATION</span>
+            <h2>Visit Our Training Hub</h2>
           </div>
+          <a
+            href="https://maps.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="directions-link"
+          >
+            Get Directions <ExternalLink size={14} />
+          </a>
         </div>
-      </section>
 
-      {/* QUICK CONTACT */}
-      <section className="contact-bottom">
-        <div>
-          <span className="eyebrow">QUICK CONTACT</span>
-          <h2>Prefer a<br /><em>conversation?</em></h2>
+        <div className="map-frame">
+          <iframe
+            title="Training Institute Location Map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.9851752494193!2d77.59207431526978!3d12.972442490855365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1677d24269e9%3A0xe5eb6d2f3c7e7b8f!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1647500000000!5m2!1sen!2sin"
+            width="100%"
+            height="340"
+            style={{ border: 0, display: "block" }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </div>
-        <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="whatsapp-button">
-          WhatsApp Us <span>↗</span>
-        </a>
       </section>
     </div>
   );

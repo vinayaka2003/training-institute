@@ -207,7 +207,7 @@ function EnrollModal({ isOpen, onClose, onSuccess }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateAll(formData);
 
@@ -230,7 +230,20 @@ function EnrollModal({ isOpen, onClose, onSuccess }) {
       return;
     }
 
-    // Option 3: Immediate Modal Close on Valid Submission
+    // Submit form data to Formspree endpoint
+    try {
+      await fetch("https://formspree.io/f/mppwzrrn", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+    } catch (err) {
+      console.error("Formspree submission error:", err);
+    }
+
     setErrors({});
     setFormData(INITIAL_FORM_STATE);
 

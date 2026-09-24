@@ -22,7 +22,8 @@
 
     color: var(--color-accent);
 
-    font-size: 13px; /* Increased for readability */
+    font-size: 13px;
+    /* Increased for readability */
     font-weight: 800;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -33,12 +34,12 @@
 ================================= */
 
 .trainers-hero {
-    width: min(100% - 80px, var(--container-width));
+    width: 100%;
     margin: 0 auto;
-    padding: 40px 0 80px;
+    padding-top: 12px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 24px;
 }
 
 .hero-top {
@@ -87,7 +88,8 @@
 
     color: var(--color-secondary);
 
-    font-size: 20px; /* Stronger body text for hero */
+    font-size: 20px;
+    /* Stronger body text for hero */
     font-weight: 400;
     line-height: 1.6;
 }
@@ -99,7 +101,8 @@
 
     padding-bottom: 8px;
 
-    border-bottom: 2px solid var(--color-primary); /* Thicker line for emphasis */
+    border-bottom: 2px solid var(--color-primary);
+    /* Thicker line for emphasis */
 
     font-size: 14px;
     font-weight: 700;
@@ -135,7 +138,7 @@
 .trainers-section {
     width: min(100% - 80px, var(--container-width));
     margin: 0 auto;
-    padding: var(--section-gap) 0;
+    padding: 48px 0 40px;
 }
 
 .section-top {
@@ -165,7 +168,7 @@
     border-radius: var(--radius);
     border: 1px solid var(--color-border);
     overflow: hidden;
-    transition: 
+    transition:
         transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
         box-shadow 0.4s ease,
         border-color 0.4s ease;
@@ -180,11 +183,11 @@
 .trainer-image-wrap {
     position: relative;
 
-    height: 380px; /* Reduced from 520px */
+    height: 360px;
 
     overflow: hidden;
 
-    background: #eeeeee;
+    background: #f8fafc;
 }
 
 .trainer-image {
@@ -194,6 +197,7 @@
     display: block;
 
     object-fit: cover;
+    object-position: center 20%;
 
     filter: grayscale(12%);
 
@@ -244,7 +248,7 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    
+
     color: #ffffff;
     font-size: 11px;
     font-weight: 700;
@@ -275,7 +279,8 @@
 .trainer-info p {
     margin: 0;
 
-    color: var(--color-accent); /* Standout role text */
+    color: var(--color-accent);
+    /* Standout role text */
 
     font-size: 13px;
     font-weight: 700;
@@ -287,7 +292,7 @@
     font-size: 28px;
     font-weight: 300;
     color: var(--color-secondary);
-    
+
     transition:
         transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
         color 0.4s ease;
@@ -303,13 +308,13 @@
 ================================= */
 
 .experience-section {
-    padding: 120px max(40px, calc((100% - 1280px) / 2));
+    padding: 48px max(40px, calc((100% - 1280px) / 2));
 
     background: var(--color-surface);
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 100px;
+    gap: 48px;
     align-items: center;
 }
 
@@ -377,7 +382,7 @@
 
     display: grid;
     grid-template-columns: 0.7fr 1.3fr;
-    gap: 120px;
+    gap: 48px;
 }
 
 .expertise-header h2 {
@@ -392,7 +397,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 20px;
-    
+
     border-top: 1px solid var(--color-border);
     padding-top: 40px;
 }
@@ -403,17 +408,17 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
-    
+
     padding: 30px 15px;
-    
+
     background: #ffffff;
     border-radius: 16px;
     border: 1px solid var(--color-border);
-    
+
     cursor: pointer;
-    transition: 
-        transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), 
-        box-shadow 0.4s ease, 
+    transition:
+        transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.4s ease,
         border-color 0.4s ease;
 }
 
@@ -427,7 +432,7 @@
     width: 45px;
     height: 45px;
     object-fit: contain;
-    
+
     transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -437,7 +442,7 @@
 
 .skill-name {
     color: var(--color-primary);
-    
+
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
@@ -474,7 +479,7 @@
 .trainers-cta p {
     margin: 25px auto 40px;
     max-width: 600px;
-    
+
     color: #a3a3a3;
 
     font-size: 20px;
@@ -585,7 +590,8 @@
     }
 
     .trainer-image-wrap {
-        height: 300px; /* Reduced from 430px */
+        height: 300px;
+        /* Reduced from 430px */
     }
 
     .experience-section {

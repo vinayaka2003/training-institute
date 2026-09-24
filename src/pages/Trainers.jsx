@@ -9,7 +9,7 @@ const trainers = [
     role: "Full Stack Development",
     experience: "8+ Years",
     image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=85",
   },
   {
     name: "Priya Nair",
@@ -23,28 +23,28 @@ const trainers = [
     role: "Java & Backend",
     experience: "9+ Years",
     image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=85",
   },
   {
     name: "Sneha Rao",
     role: "UI/UX Design",
     experience: "6+ Years",
     image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85",
   },
   {
     name: "Vikramaditya Das",
     role: "Cloud & DevOps",
     experience: "10+ Years",
     image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=900&q=85",
   },
   {
     name: "Ananya Deshmukh",
     role: "Cyber Security & Systems",
     experience: "8+ Years",
     image:
-      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=900&q=85",
   },
 ];
 
@@ -100,6 +100,14 @@ function Trainers() {
   const indexOfFirstTrainer = indexOfLastTrainer - itemsPerPage;
   const currentTrainers = trainers.slice(indexOfFirstTrainer, indexOfLastTrainer);
 
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
+    e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
     <div className="trainers-page">
 
@@ -149,8 +157,8 @@ function Trainers() {
 
         <div className="trainers-grid">
           {currentTrainers.map((trainer, index) => (
-            <Tilt key={trainer.name} tiltMaxAngleX={8} tiltMaxAngleY={8} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.15} glareColor="white" glarePosition="all" borderRadius="20px">
-              <article className={`trainer-card reveal reveal-delay-${(index % 3) + 1}`}>
+            <Tilt key={trainer.name} tiltMaxAngleX={6} tiltMaxAngleY={6} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.12} glareColor="white" glarePosition="all" borderRadius="20px">
+              <article className={`trainer-card spotlight-card reveal reveal-delay-${(index % 3) + 1}`} onMouseMove={handleMouseMove}>
 
                 <div className="trainer-image-wrap image-hover">
                   <img
@@ -270,8 +278,8 @@ function Trainers() {
 
         <div className="skills-grid">
           {skills.map((skill) => (
-            <Tilt key={skill.name} tiltMaxAngleX={15} tiltMaxAngleY={15} perspective={1000} scale={1.05} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.2} glareColor="white" glarePosition="all" borderRadius="16px">
-              <div className="skill-card">
+            <Tilt key={skill.name} tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={1000} scale={1.03} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.15} glareColor="white" glarePosition="all" borderRadius="16px">
+              <div className="skill-card spotlight-card" onMouseMove={handleMouseMove}>
                 <img src={skill.logo} alt={skill.name} className="skill-logo" />
                 <span className="skill-name">{skill.name}</span>
               </div>
@@ -296,7 +304,7 @@ function Trainers() {
           Learn from experts. Build something real.
         </p>
 
-        <a href="/classes" className="cta-button">
+        <a href="/classes" className="cta-button btn-magnetic">
           Explore Courses
           <span>→</span>
         </a>

@@ -25,12 +25,13 @@
 ========================= */
 
 .placements-hero {
-    width: min(100% - 80px, var(--container-width));
+    width: 100%;
     margin: 0 auto;
-    padding: 40px 0 80px; 
+    padding-top: 12px;
+    padding-bottom: 32px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 24px;
 }
 
 .placements-hero-top {
@@ -208,7 +209,7 @@
 
 .student-image-wrap {
     position: relative;
-    height: 400px; /* Reduced from 460px */
+    height: 340px;
     overflow: hidden;
     background: #eeeeee;
 }
@@ -218,6 +219,7 @@
     height: 100%;
     display: block;
     object-fit: cover;
+    object-position: center 15%;
     transition: transform 0.6s ease;
 }
 

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Tilt from "react-parallax-tilt";
 import {
-  Sparkles,
   Clock,
   ArrowRight,
   BookOpen,
@@ -12,7 +11,6 @@ import {
   ChevronRight,
   X,
   Send,
-  Layers,
   Award,
 } from "lucide-react";
 import "../styles/courses.css";
@@ -151,6 +149,14 @@ function Courses() {
     setEnrollSubmitted(true);
   };
 
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
+    e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
+  };
+
   return (
     <div className="courses-container">
       {/* Header Area */}
@@ -176,105 +182,105 @@ function Courses() {
       </div>
 
       {/* Interactive Level & Domain Filters */}
-      <div className="courses-filter-bar">
-        <div className="filter-group-row">
-          <span className="filter-group-title">Experience Level:</span>
-          {["All", "Beginner", "Intermediate", "Advanced"].map((lvl) => (
-            <button
-              key={lvl}
-              className={`course-filter-chip ${selectedLevel === lvl ? "active" : ""}`}
-              onClick={() => handleSelectLevel(lvl)}
-            >
-              {lvl === "All" ? "All Levels" : lvl}
-            </button>
-          ))}
+        <div className="courses-filter-bar">
+          <div className="filter-group-row">
+            <span className="filter-group-title">Experience Level:</span>
+            {["All", "Beginner", "Intermediate", "Advanced"].map((lvl) => (
+              <button
+                key={lvl}
+                className={`course-filter-chip ${selectedLevel === lvl ? "active" : ""}`}
+                onClick={() => handleSelectLevel(lvl)}
+              >
+                {lvl === "All" ? "All Levels" : lvl}
+              </button>
+            ))}
+          </div>
+
+          <div className="filter-group-row">
+            <span className="filter-group-title">Specialization:</span>
+            {["All", "Web & Frontend", "Backend", "Cloud & DevOps", "Algorithms"].map((dom) => (
+              <button
+                key={dom}
+                className={`course-filter-chip ${selectedDomain === dom ? "active" : ""}`}
+                onClick={() => handleSelectDomain(dom)}
+              >
+                {dom}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="filter-group-row">
-          <span className="filter-group-title">Specialization:</span>
-          {["All", "Web & Frontend", "Backend", "Cloud & DevOps", "Algorithms"].map((dom) => (
-            <button
-              key={dom}
-              className={`course-filter-chip ${selectedDomain === dom ? "active" : ""}`}
-              onClick={() => handleSelectDomain(dom)}
-            >
-              {dom}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Courses Grid */}
-      <div className="courses-grid">
-        {currentCourses.map((c) => {
-          const isCurriculumOpen = expandedCurriculum === c.id;
-          return (
-            <Tilt key={c.id} tiltMaxAngleX={5} tiltMaxAngleY={5} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="white" glarePosition="all" borderRadius="24px">
-              <div className="course-card">
-              <div>
-                <div className="card-top">
-                  <span className="level-badge">{c.level}</span>
-                  <span className="duration-badge">
-                    <Clock size={13} />
-                    <strong>{c.duration}</strong>
-                  </span>
-                </div>
-
-                <h3 className="course-title">{c.title}</h3>
-                <p className="course-summary">{c.summary}</p>
-
-                {/* Capstone Box */}
-                <div className="capstone-box">
-                  <Award size={16} />
-                  <span>Capstone: {c.capstone}</span>
-                </div>
-
-                <div className="skills-wrapper">
-                  {c.skills.map((skill, sIdx) => (
-                    <span key={sIdx} className="skill-pill">
-                      {skill}
+        {/* Courses Grid */}
+        <div className="courses-grid">
+          {currentCourses.map((c) => {
+            const isCurriculumOpen = expandedCurriculum === c.id;
+            return (
+              <Tilt key={c.id} tiltMaxAngleX={5} tiltMaxAngleY={5} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="white" glarePosition="all" borderRadius="24px">
+                <div className="course-card spotlight-card" onMouseMove={handleMouseMove}>
+                <div>
+                  <div className="card-top">
+                    <span className="level-badge">{c.level}</span>
+                    <span className="duration-badge">
+                      <Clock size={13} />
+                      <strong>{c.duration}</strong>
                     </span>
-                  ))}
-                </div>
+                  </div>
 
-                {/* Expandable Curriculum Accordion */}
-                <button
-                  className="curriculum-accordion-btn"
-                  onClick={() => toggleCurriculum(c.id)}
-                >
-                  <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                    <BookOpen size={15} color="#ea580c" />
-                    {isCurriculumOpen ? "Hide Syllabus Details" : "View Curriculum Modules (3)"}
-                  </span>
-                  {isCurriculumOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                </button>
+                  <h3 className="course-title">{c.title}</h3>
+                  <p className="course-summary">{c.summary}</p>
 
-                {isCurriculumOpen && (
-                  <div className="curriculum-drawer">
-                    {c.modules.map((m, mIdx) => (
-                      <div key={mIdx} className="module-item">
-                        <span className="module-num">M{m.num}</span>
-                        <div>
-                          <div className="module-title">{m.title}</div>
-                          <div className="module-desc">{m.desc}</div>
-                        </div>
-                      </div>
+                  {/* Capstone Box */}
+                  <div className="capstone-box">
+                    <Award size={16} />
+                    <span>Capstone: {c.capstone}</span>
+                  </div>
+
+                  <div className="skills-wrapper">
+                    {c.skills.map((skill, sIdx) => (
+                      <span key={sIdx} className="skill-pill">
+                        {skill}
+                      </span>
                     ))}
                   </div>
-                )}
-              </div>
 
-              <button
-                className="course-learn-btn"
-                onClick={() => handleOpenEnrollModal(c)}
-              >
-                Enroll & View Syllabus <ArrowRight size={16} />
-              </button>
-            </div>
-            </Tilt>
-          );
-        })}
-      </div>
+                  {/* Expandable Curriculum Accordion */}
+                  <button
+                    className="curriculum-accordion-btn"
+                    onClick={() => toggleCurriculum(c.id)}
+                  >
+                    <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                      <BookOpen size={15} color="#ea580c" />
+                      {isCurriculumOpen ? "Hide Syllabus Details" : "View Curriculum Modules (3)"}
+                    </span>
+                    {isCurriculumOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                  </button>
+
+                  {isCurriculumOpen && (
+                    <div className="curriculum-drawer">
+                      {c.modules.map((m, mIdx) => (
+                        <div key={mIdx} className="module-item">
+                          <span className="module-num">M{m.num}</span>
+                          <div>
+                            <div className="module-title">{m.title}</div>
+                            <div className="module-desc">{m.desc}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <button
+                  className="course-learn-btn btn-magnetic"
+                  onClick={() => handleOpenEnrollModal(c)}
+                >
+                  Enroll & View Syllabus <ArrowRight size={16} />
+                </button>
+              </div>
+              </Tilt>
+            );
+          })}
+        </div>
 
       {/* Pagination Controls */}
       {totalPages > 1 && (

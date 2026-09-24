@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import EnrollModal from "./EnrollModal";
 import Toast from "./Toast";
@@ -6,22 +6,9 @@ import "../styles/header.css";
 
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
   const [isToastVisible, setIsToastVisible] = useState(false);
   const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const toggleMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -49,7 +36,7 @@ function Header() {
 
   return (
     <>
-      <header className={`header ${isScrolled ? "scrolled" : ""}`}>
+      <header className="header">
         <div className="header-container">
           <Link to="/" className="logo" onClick={closeMenu}>
             <img src="/brand-logo.jpg" alt="TrainingInstitute Logo" className="header-logo-icon" />

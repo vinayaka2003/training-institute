@@ -1,463 +1,445 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Tilt from "react-parallax-tilt";
 import {
-  Code2,
-  GraduationCap,
-  Rocket,
-  Sparkles,
+  ArrowDownRight,
   ArrowRight,
-  Calendar,
-  Play,
-  CheckCircle2,
+  BriefcaseBusiness,
+  CalendarDays,
+  Check,
   ChevronDown,
   ChevronUp,
-  Terminal,
-  Layers,
-  Award,
+  Code2,
+  GraduationCap,
+  Layers3,
+  Play,
   Star,
+  Users,
 } from "lucide-react";
 import "../styles/home.css";
 
-function Home() {
-  const [touchedCard, setTouchedCard] = useState(null);
+const codeTabs = {
+  "App.jsx": [
+    ["01", '<span class="c-comment">// build skills that ship</span>'],
+    ["02", '<span class="c-keyword">const</span> journey = ['],
+    ["03", '  <span class="c-string">"Learn"</span>,'],
+    ["04", '  <span class="c-string">"Build"</span>,'],
+    ["05", '  <span class="c-string">"Get Mentored"</span>,'],
+    ["06", '  <span class="c-string">"Get Placed"</span>'],
+    ["07", "];"],
+  ],
+  "api.ts": [
+    ["01", '<span class="c-keyword">const</span> api = <span class="c-function">createApi</span>();'],
+    ["02", 'api.<span class="c-function">get</span>(<span class="c-string">"/projects"</span>, async () =&gt; {'],
+    ["03", '  <span class="c-keyword">return</span> <span class="c-string">"real-world work"</span>;'],
+    ["04", "});"],
+  ],
+  "deploy.yml": [
+    ["01", '<span class="c-tag">name</span>: Production Pipeline'],
+    ["02", '<span class="c-tag">on</span>: [push, pull_request]'],
+    ["03", '<span class="c-tag">jobs</span>:'],
+    ["04", '  <span class="c-tag">build</span>:'],
+    ["05", '    <span class="c-tag">runs-on</span>: ubuntu-latest'],
+  ],
+};
 
-  // Stats Animated Counter State
+const features = [
+  {
+    title: "Industry-ready Stacks",
+    desc: "Work with modern tech stacks, Git workflows, live API deployments, and production tools.",
+    label: "01",
+    tone: "orange",
+    icon: Layers3,
+  },
+  {
+    title: "Hands-on Coding",
+    desc: "Build real-world projects with active code reviews and daily practical lab exercises.",
+    label: "02",
+    tone: "blue",
+    icon: Code2,
+  },
+  {
+    title: "1-on-1 Guidance",
+    desc: "Learn directly from tech leads with dedicated mentorship, doubt solving, and feedback.",
+    label: "03",
+    tone: "green",
+    icon: GraduationCap,
+  },
+  {
+    title: "Placement Support",
+    desc: "Resume reviews, portfolio polishing, DSA practice, and direct partner hiring referrals.",
+    label: "04",
+    tone: "violet",
+    icon: BriefcaseBusiness,
+  },
+];
+
+const roadmap = [
+  {
+    no: "01",
+    title: "Foundations",
+    headline: "Core Computer Science & Modern Stacks",
+    desc: "Build the fundamentals that strong developers rely on: JavaScript, React, state architecture, and Git workflows.",
+    items: ["Modern ESNext & TS", "State Architecture", "Responsive Systems", "Git/GitHub Workflows"],
+  },
+  {
+    no: "02",
+    title: "Build",
+    headline: "Enterprise APIs & Scalable Backends",
+    desc: "Turn concepts into production-style applications with Node.js, databases, REST APIs, and authentication.",
+    items: ["Node.js & Express", "PostgreSQL & MongoDB", "REST APIs", "Code Reviews"],
+  },
+  {
+    no: "03",
+    title: "Deploy",
+    headline: "Cloud Infrastructure & CI/CD Pipelines",
+    desc: "Learn the full workflow from local code to live cloud deployments using Docker, GitHub Actions, and AWS.",
+    items: ["Docker Containers", "AWS Cloud", "CI/CD Pipelines", "Automated Testing"],
+  },
+  {
+    no: "04",
+    title: "Get Placed",
+    headline: "Interview Prep & Direct Referrals",
+    desc: "Turn your skills, projects, and portfolio into job opportunities with 1:1 mock technical interviews.",
+    items: ["DSA Problem Patterns", "System Design Sprints", "Live Mock Interviews", "Placement Referrals"],
+  },
+];
+
+const faqs = [
+  ["What are the batch timings?", "We offer flexible Weekday and Weekend batches. All live coding sessions are recorded for review."],
+  ["Can beginners join without a CS background?", "Yes! Our curriculum starts from engineering fundamentals and builds up to advanced enterprise architectures."],
+  ["Is 1-on-1 mentorship included?", "Each student receives weekly 1-on-1 code reviews, doubt-clearing sessions, and direct mentor feedback."],
+  ["What placement support is provided?", "We provide complete hiring support: resume polishing, GitHub portfolio reviews, mock technical interviews, and corporate referrals."],
+];
+
+function Home() {
   const statsRef = useRef(null);
+  const [activeTab, setActiveTab] = useState("App.jsx");
+  const [running, setRunning] = useState(false);
+  const [output, setOutput] = useState("");
+  const [activeRoadmap, setActiveRoadmap] = useState(0);
+  const [openFaq, setOpenFaq] = useState(0);
   const [statsVisible, setStatsVisible] = useState(false);
-  const [count94, setCount94] = useState(0);
-  const [count200, setCount200] = useState(0);
-  const [count100, setCount100] = useState(0);
+  const [students, setStudents] = useState(1200);
+  const [placed, setPlaced] = useState(85);
 
   useEffect(() => {
-    let animationFrameId = null;
-    let liveIntervalId = null;
-    let hasTriggered = false;
+    const root = document.querySelector(".home-container");
+    if (!root) return;
 
-    const startAnimation = () => {
-      if (hasTriggered) return;
-      hasTriggered = true;
-      setStatsVisible(true);
-
-      const duration = 2000; // ~2 seconds
-      const startTime = performance.now();
-
-      const animateCounts = (currentTime) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-
-        // Smooth cubic ease-out deceleration
-        const ease = 1 - Math.pow(1 - progress, 3);
-
-        setCount94(Math.round(ease * 94));
-        setCount200(Math.round(ease * 200));
-        setCount100(Math.round(ease * 100));
-
-        if (progress < 1) {
-          animationFrameId = requestAnimationFrame(animateCounts);
-        } else {
-          setCount94(94);
-          setCount200(200);
-          setCount100(100);
-
-          // Background interval simulating live growing platform metrics
-          liveIntervalId = setInterval(() => {
-            setCount200((prev) => prev + 1);
-            setCount94((prev) => (prev < 99 ? prev + 1 : 94));
-            setCount100((prev) => prev + 1);
-          }, 3000);
-        }
-      };
-
-      animationFrameId = requestAnimationFrame(animateCounts);
-    };
-
-    let observer = null;
-    if (window.IntersectionObserver && statsRef.current) {
-      observer = new IntersectionObserver(
-        ([entry]) => {
+    const revealItems = root.querySelectorAll("[data-reveal]");
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            startAnimation();
-            if (observer) {
-              observer.disconnect();
-            }
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
           }
-        },
-        { threshold: 0.15 }
-      );
-      observer.observe(statsRef.current);
-    } else {
-      startAnimation();
-    }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-    return () => {
-      if (observer) observer.disconnect();
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-      if (liveIntervalId) clearInterval(liveIntervalId);
-    };
+    revealItems.forEach((item) => revealObserver.observe(item));
+    return () => revealObserver.disconnect();
   }, []);
 
-  // Interactive Code Playground State
-  const [activeCodeTab, setActiveCodeTab] = useState("App.jsx");
-  const [isRunningCode, setIsRunningCode] = useState(false);
-  const [codeOutput, setCodeOutput] = useState(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStatsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
 
-  // Interactive Roadmap State
-  const [activeRoadmapStep, setActiveRoadmapStep] = useState(0);
+    if (statsRef.current) observer.observe(statsRef.current);
+    return () => observer.disconnect();
+  }, []);
 
-  // Interactive FAQ Accordion State
-  const [openFaq, setOpenFaq] = useState(0);
+  useEffect(() => {
+    if (!statsVisible) return;
 
-  const codeSnippets = {
-    "App.jsx": [
-      { num: "01", code: '<span class="c-kw">import</span> { useState } <span class="c-kw">from</span> <span class="c-str">"react"</span>;' },
-      { num: "02", code: '<span class="c-kw">import</span> { InstituteCloud } <span class="c-kw">from</span> <span class="c-str">"@institute/sdk"</span>;' },
-      { num: "03", code: "" },
-      { num: "04", code: '<span class="c-kw">export default function</span> <span class="c-fn">LiveApp</span>() {' },
-      { num: "05", code: '  <span class="c-kw">const</span> [status, setStatus] = <span class="c-fn">useState</span>(<span class="c-str">"deploying"</span>);' },
-      { num: "06", code: '  <span class="c-com">// Production deployment with automated CI/CD</span>' },
-      { num: "07", code: '  <span class="c-kw">return</span> <span class="c-tag">&lt;ProductionWorkspace ready={true} /&gt;</span>;' },
-      { num: "08", code: "}" },
-    ],
-    "api.ts": [
-      { num: "01", code: '<span class="c-kw">import</span> { Router, Request, Response } <span class="c-kw">from</span> <span class="c-str">"express"</span>;' },
-      { num: "02", code: '<span class="c-kw">const</span> api = <span class="c-fn">Router</span>();' },
-      { num: "03", code: "" },
-      { num: "04", code: 'api.<span class="c-fn">get</span>(<span class="c-str">"/api/v1/cohorts"</span>, <span class="c-kw">async</span> (req, res) => {' },
-      { num: "05", code: '  <span class="c-kw">const</span> batches = <span class="c-kw">await</span> Database.<span class="c-fn">getLiveBatches</span>();' },
-      { num: "06", code: '  res.<span class="c-fn">status</span>(200).<span class="c-fn">json</span>({ success: <span class="c-kw">true</span>, batches });' },
-      { num: "07", code: "});" },
-      { num: "08", code: '<span class="c-kw">export default</span> api;' },
-    ],
-    "deploy.yml": [
-      { num: "01", code: '<span class="c-tag">name</span>: Production Pipeline' },
-      { num: "02", code: '<span class="c-tag">on</span>: [push, pull_request]' },
-      { num: "03", code: '<span class="c-tag">jobs</span>:' },
-      { num: "04", code: '  <span class="c-tag">build-and-test</span>:' },
-      { num: "05", code: '    <span class="c-tag">runs-on</span>: ubuntu-latest' },
-      { num: "06", code: '    <span class="c-tag">steps</span>:' },
-      { num: "07", code: '      - <span class="c-tag">uses</span>: actions/checkout@v4' },
-      { num: "08", code: '      - <span class="c-tag">run</span>: <span class="c-str">npm test && npm run deploy</span>' },
-    ],
+    let frame;
+    const start = performance.now();
+    const duration = 1000;
+
+    const animate = (now) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setStudents(Math.round(1200 * eased));
+      setPlaced(Math.round(85 * eased));
+      if (p < 1) frame = requestAnimationFrame(animate);
+    };
+
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, [statsVisible]);
+
+  const runCode = () => {
+    setRunning(true);
+    setOutput("");
+    window.setTimeout(() => {
+      setOutput("✓ Build ready · 42 tests passing · Deployed to live environment");
+      setRunning(false);
+    }, 500);
   };
 
-  const handleRunCode = () => {
-    setIsRunningCode(true);
-    setCodeOutput("Executing build simulation...");
-    setTimeout(() => {
-      setCodeOutput("✓ Build succeeded (0.24s) • 42 tests passing • Deployed to live environment at https://app.production.live");
-      setIsRunningCode(false);
-    }, 600);
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
+    e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
   };
-
-  const roadmapSteps = [
-    {
-      step: "Phase 01",
-      title: "Core Foundations",
-      headline: "Master Core Computer Science & Stacks",
-      desc: "Deep-dive into modern JavaScript/TypeScript, React fundamentals, component trees, and state machines with test-driven workflows.",
-      deliverables: ["Modern ESNext & TS", "State Architecture", "Responsive Systems", "Git/GitHub Workflows"],
-      icon: Code2,
-    },
-    {
-      step: "Phase 02",
-      title: "Enterprise Backend",
-      headline: "Scalable APIs & Microservices",
-      desc: "Build robust REST & GraphQL backends, database schema designs with PostgreSQL/MongoDB, and secure JWT/OAuth authentications.",
-      deliverables: ["Node.js / Spring Boot", "PostgreSQL & MongoDB", "Redis Caching", "API Gateways"],
-      icon: Layers,
-    },
-    {
-      step: "Phase 03",
-      title: "Cloud & DevOps",
-      headline: "Containerization & CI/CD Pipelines",
-      desc: "Containerize full-stack apps using Docker, write multi-stage build manifests, and set up continuous integration pipelines on AWS.",
-      deliverables: ["Docker Containers", "Kubernetes Clusters", "AWS S3 / ECS", "GitHub Actions CI/CD"],
-      icon: Terminal,
-    },
-    {
-      step: "Phase 04",
-      title: "Career & Placement",
-      headline: "DSA, System Design & 1:1 Mock Interviews",
-      desc: "Practice tier-1 tech coding interview challenges, high-level system design trade-offs, and receive direct corporate referrals.",
-      deliverables: ["DSA Problem Patterns", "System Design Sprints", "Live Mock Interviews", "Direct Company Referrals"],
-      icon: Award,
-    },
-  ];
-
-  const faqs = [
-    {
-      q: "What are the live batch schedules and timings?",
-      a: "We offer both Weekday batches (Mon - Fri, morning and evening slots) and Weekend batches (Sat - Sun, intensive labs). All live sessions are recorded and uploaded with code repositories for lifetime review.",
-    },
-    {
-      q: "Can I join if I don't have a Computer Science degree?",
-      a: "Yes, over 40% of our successful alumni come from non-CS backgrounds. Our curriculum starts from engineering foundations before progressing to advanced enterprise architectures.",
-    },
-    {
-      q: "How does the 1-on-1 mentorship work?",
-      a: "Each student is paired with a dedicated working tech lead. You receive weekly 1-on-1 code reviews, architectural feedback on your pull requests, and on-demand doubt clearance.",
-    },
-    {
-      q: "What career and placement support is provided?",
-      a: "We provide full placement assistance: resume reviews, GitHub portfolio polishing, 1-on-1 mock technical interviews, and direct hiring referrals to over 200+ partner companies.",
-    },
-  ];
 
   return (
     <div className="home-container">
-      {/* 1. Interactive Split Hero Section */}
-      <section className="home-split-hero">
-        <div className="hero-left-content">
-          <span className="eyebrow">SPRING 2026 ADMISSIONS OPEN</span>
-          <h1 className="home-title">
-            <span className="title-line">Master Tech Skills</span>
-            <em>Build your future.</em>
-          </h1>
-          <p className="home-subtitle">
-            Industry-vetted curriculum, daily live coding labs, and direct mentorship tailored to prepare aspiring engineers for high-impact developer roles.
-          </p>
-
-          <div className="hero-cta-group">
-            <Link to="/course-details" className="hero-primary-btn">
-              Explore Programs <ArrowRight size={16} />
-            </Link>
-            <Link to="/classes" className="hero-secondary-btn">
-              <Calendar size={16} /> View Schedules
-            </Link>
-          </div>
-
-          <div className="hero-social-proof">
-            <div className="social-proof-badge">
-              <div className="rating-stars-box">
-                <div className="stars-group">
-                  <Star size={14} fill="#f59e0b" color="#f59e0b" />
-                  <Star size={14} fill="#f59e0b" color="#f59e0b" />
-                  <Star size={14} fill="#f59e0b" color="#f59e0b" />
-                  <Star size={14} fill="#f59e0b" color="#f59e0b" />
-                  <Star size={14} fill="#f59e0b" color="#f59e0b" />
-                </div>
-                <span className="rating-val">4.9 / 5.0</span>
-              </div>
-              <span className="social-proof-divider"></span>
-              <div className="social-proof-info">
-                <span className="proof-main">1,200+ Developers Trained</span>
-                <span className="proof-sub">
-                  <CheckCircle2 size={12} color="#16a34a" /> Verified Alumni Reviews
-                </span>
-              </div>
+      {/* FIRST SCREEN VIEWPORT SECTION */}
+      <div className="home-first-section">
+        {/* HERO SECTION */}
+        <section className="home-hero" data-reveal>
+          <div className="hero-copy">
+            <div className="eyebrow">
+              <span />
+              SPRING 2026 · ADMISSIONS OPEN
             </div>
-          </div>
-        </div>
 
-        {/* Right Side: Interactive Code Playground */}
-        <div className="ide-widget">
-          <div className="ide-header">
-            <div className="ide-dots">
-              <span className="ide-dot dot-red"></span>
-              <span className="ide-dot dot-yellow"></span>
-              <span className="ide-dot dot-green"></span>
+            <h1 className="hero-title">
+              <span>Master Tech</span>
+              <span>Skills.</span>
+              <em>Build your future.</em>
+            </h1>
+
+            <p className="hero-lead">
+              Industry-vetted curriculum, daily live coding labs, and direct mentorship tailored to prepare aspiring engineers for high-impact developer roles.
+            </p>
+
+            <div className="hero-actions">
+              <Link to="/course-details" className="hero-btn hero-btn-dark btn-magnetic">
+                Explore Programs <ArrowRight size={16} />
+              </Link>
+              <Link to="/classes" className="hero-btn hero-btn-light btn-magnetic">
+                <CalendarDays size={16} /> View Schedules
+              </Link>
             </div>
-            <div className="ide-tabs">
-              {Object.keys(codeSnippets).map((tab) => (
-                <button
-                  key={tab}
-                  className={`ide-tab ${activeCodeTab === tab ? "active" : ""}`}
-                  onClick={() => {
-                    setActiveCodeTab(tab);
-                    setCodeOutput(null);
-                  }}
-                >
-                  {tab}
-                </button>
-              ))}
+
+            <div className="hero-microproof">
+              <span><i className="live-dot" /> Live projects</span>
+              <span><Check size={14} /> Expert mentors</span>
+              <span><Check size={14} /> Career support</span>
             </div>
           </div>
 
-          <div className="ide-body">
-            {codeSnippets[activeCodeTab].map((line, lIdx) => (
-              <div key={lIdx} className="code-line">
-                <span className="line-num">{line.num}</span>
-                <span
-                  className="line-text"
-                  dangerouslySetInnerHTML={{ __html: line.code }}
-                />
-              </div>
-            ))}
-          </div>
+          <div className="hero-stage">
+            <div className="stage-grid" />
 
-          <div className="ide-footer">
-            <div className="ide-status">
-              <span className="live-pulse-dot" style={{ backgroundColor: "#10b981" }}></span>
-              Ready to execute
-            </div>
-            <button
-              className="run-code-btn"
-              onClick={handleRunCode}
-              disabled={isRunningCode}
+            <Tilt
+              tiltMaxAngleX={6}
+              tiltMaxAngleY={6}
+              perspective={1000}
+              scale={1.01}
+              transitionSpeed={1200}
+              glareEnable={true}
+              glareMaxOpacity={0.06}
+              glareColor="white"
+              glarePosition="all"
+              borderRadius="16px"
+              className="ide-tilt-wrapper"
             >
-              <Play size={13} fill="#ffffff" />
-              {isRunningCode ? "Running..." : "Run Code"}
-            </button>
-          </div>
+              <div className="code-window">
+                <div className="code-topbar">
+                  <div className="window-dots">
+                    <i className="red" /><i className="yellow" /><i className="green" />
+                  </div>
 
-          {codeOutput && (
-            <div className="ide-output-drawer">
-              {codeOutput}
+                  <div className="code-tabs">
+                    {Object.keys(codeTabs).map((tab) => (
+                      <button
+                        key={tab}
+                        className={activeTab === tab ? "active" : ""}
+                        onClick={() => {
+                          setActiveTab(tab);
+                          setOutput("");
+                        }}
+                      >
+                        {tab}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="code-content">
+                  {codeTabs[activeTab].map(([number, line]) => (
+                    <div className="code-row" key={number}>
+                      <span>{number}</span>
+                      <code dangerouslySetInnerHTML={{ __html: line }} />
+                    </div>
+                  ))}
+                </div>
+
+                <div className="code-bottom">
+                  <span className="ready">
+                    <i /> Ready to build
+                  </span>
+                  <button onClick={runCode} disabled={running}>
+                    <Play size={12} fill="currentColor" />
+                    {running ? "Running..." : "Run Code"}
+                  </button>
+                </div>
+
+                {output && <div className="code-output">{output}</div>}
+              </div>
+            </Tilt>
+          </div>
+        </section>
+
+        {/* METRICS & IMPACT RIBBON */}
+        <section className="proof-ribbon" ref={statsRef} data-reveal>
+          <Tilt tiltMaxAngleX={4} tiltMaxAngleY={4} perspective={1000} scale={1.02} transitionSpeed={1000} borderRadius="14px">
+            <div className="proof-cell spotlight-card" onMouseMove={handleMouseMove}>
+              <Users />
+              <div><strong>{students.toLocaleString()}<b>+</b></strong><span>Students trained</span></div>
             </div>
-          )}
-        </div>
-      </section>
-
-      {/* 2. Metrics & Impact Ribbon */}
-      <div className="home-stats-ribbon" ref={statsRef}>
-        <div className="stat-item">
-          <div className="stat-num">{count94}<span>%</span></div>
-          <div className="stat-desc">Placement Success Rate</div>
-        </div>
-        <div className="stat-item">
-          <div className={`stat-num ${statsVisible ? "stat-pulse-fade" : ""}`}>
-            1<span>:</span>1
-          </div>
-          <div className="stat-desc">Direct Mentor Code Reviews</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-num">{count200}<span>+</span></div>
-          <div className="stat-desc">Hiring Tech Partners</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-num">{count100}<span>%</span></div>
-          <div className="stat-desc">Project-Based Learning</div>
-        </div>
+          </Tilt>
+          <Tilt tiltMaxAngleX={4} tiltMaxAngleY={4} perspective={1000} scale={1.02} transitionSpeed={1000} borderRadius="14px">
+            <div className="proof-cell spotlight-card" onMouseMove={handleMouseMove}>
+              <Star fill="currentColor" />
+              <div><strong>4.9<b>/5</b></strong><span>Student rating</span></div>
+            </div>
+          </Tilt>
+          <Tilt tiltMaxAngleX={4} tiltMaxAngleY={4} perspective={1000} scale={1.02} transitionSpeed={1000} borderRadius="14px">
+            <div className="proof-cell spotlight-card" onMouseMove={handleMouseMove}>
+              <BriefcaseBusiness />
+              <div><strong>{placed}<b>%</b></strong><span>Placement success</span></div>
+            </div>
+          </Tilt>
+          <Tilt tiltMaxAngleX={4} tiltMaxAngleY={4} perspective={1000} scale={1.02} transitionSpeed={1000} borderRadius="14px">
+            <div className="proof-cell spotlight-card" onMouseMove={handleMouseMove}>
+              <Code2 />
+              <div><strong>100<b>%</b></strong><span>Project based</span></div>
+            </div>
+          </Tilt>
+        </section>
       </div>
 
-      {/* 3. Core Highlights Section */}
-      <section>
-        <div className="section-header-wrap">
-          <span className="section-tag-pill">Why Choose Us</span>
-          <h2 className="section-main-title">Built for Real-World Engineering</h2>
+      {/* FEATURE BENTO GRID */}
+      <section className="feature-section" data-reveal>
+        <div className="section-intro">
+          <div>
+            <span className="section-kicker">WHY TRAINING INSTITUTE</span>
+            <h2>Learn less like a classroom.<br /><em>Build more like a developer.</em></h2>
+          </div>
+          <p>One focused engineering system for practical skills, production projects, expert mentorship, and career placement.</p>
         </div>
 
-        <div className="home-grid">
-          <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.15} glareColor="white" glarePosition="all" borderRadius="24px">
-            <div
-              className={`feature-card ${touchedCard === 0 ? "is-touched" : ""}`}
-              onTouchStart={() => setTouchedCard(0)}
-              onTouchEnd={() => setTouchedCard(null)}
-              onTouchCancel={() => setTouchedCard(null)}
+        <div className="feature-bento">
+          {features.map(({ title, desc, label, tone, icon: Icon }) => (
+            <Tilt
+              key={title}
+              tiltMaxAngleX={6}
+              tiltMaxAngleY={6}
+              perspective={1000}
+              scale={1.02}
+              transitionSpeed={1200}
+              glareEnable={true}
+              glareMaxOpacity={0.08}
+              glareColor="white"
+              glarePosition="all"
+              borderRadius="16px"
+              className="feature-tilt"
             >
-              <div className="feature-icon-wrapper blue">
-                <Code2 size={26} strokeWidth={2.2} />
-              </div>
-              <h3 className="feature-title">Live Practical Coding</h3>
-              <p className="feature-text">
-                Work with industry-standard stacks, Git workflows, PR reviews, and live production deployments.
-              </p>
-            </div>
-          </Tilt>
-
-          <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.15} glareColor="white" glarePosition="all" borderRadius="24px">
-            <div
-              className={`feature-card ${touchedCard === 1 ? "is-touched" : ""}`}
-              onTouchStart={() => setTouchedCard(1)}
-              onTouchEnd={() => setTouchedCard(null)}
-              onTouchCancel={() => setTouchedCard(null)}
-            >
-              <div className="feature-icon-wrapper purple">
-                <GraduationCap size={26} strokeWidth={2.2} />
-              </div>
-              <h3 className="feature-title">Expert Mentorship</h3>
-              <p className="feature-text">
-                Learn directly from working software engineers with 1-on-1 code reviews and doubt clearing.
-              </p>
-            </div>
-          </Tilt>
-
-          <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.15} glareColor="white" glarePosition="all" borderRadius="24px">
-            <div
-              className={`feature-card ${touchedCard === 2 ? "is-touched" : ""}`}
-              onTouchStart={() => setTouchedCard(2)}
-              onTouchEnd={() => setTouchedCard(null)}
-              onTouchCancel={() => setTouchedCard(null)}
-            >
-              <div className="feature-icon-wrapper orange">
-                <Rocket size={26} strokeWidth={2.2} />
-              </div>
-              <h3 className="feature-title">Career Acceleration</h3>
-              <p className="feature-text">
-                Targeted interview prep, DSA problem solving, and direct placement opportunities with top tech teams.
-              </p>
-            </div>
-          </Tilt>
+              <article className={`feature-card ${tone} spotlight-card`} onMouseMove={handleMouseMove}>
+                <div className="feature-head">
+                  <div className="feature-icon"><Icon size={22} /></div>
+                  <span>{label}</span>
+                </div>
+                <div className="feature-body">
+                  <h3>{title}</h3>
+                  <p>{desc}</p>
+                </div>
+                <div className="feature-foot">
+                  <span className="feature-explore">Explore</span>
+                  <div className="feature-arrow"><ArrowDownRight size={16} /></div>
+                </div>
+              </article>
+            </Tilt>
+          ))}
         </div>
       </section>
 
-      {/* 4. Interactive 4-Step Career Roadmap */}
-      <section className="roadmap-section">
-        <div className="section-header-wrap">
-          <span className="section-tag-pill">Structured Journey</span>
-          <h2 className="section-main-title">Your Path to a Tech Career</h2>
+      {/* MARQUEE STRIP */}
+      <section className="marquee-strip" aria-label="Learning benefits" data-reveal>
+        <div>REAL PROJECTS ✦ LIVE MENTORSHIP ✦ PORTFOLIO BUILDING ✦ CAREER SUPPORT ✦ REAL PROJECTS ✦ LIVE MENTORSHIP ✦ PORTFOLIO BUILDING ✦ CAREER SUPPORT ✦</div>
+      </section>
+
+      {/* STRUCTURED CAREER JOURNEY */}
+      <section className="journey-section" data-reveal>
+        <div className="section-intro centered">
+          <span className="section-kicker">THE JOURNEY</span>
+          <h2>From first line<br /><em>to first opportunity.</em></h2>
         </div>
 
-        <div className="roadmap-stepper">
-          {roadmapSteps.map((s, idx) => (
+        <div className="journey-tabs">
+          {roadmap.map((item, index) => (
             <button
-              key={idx}
-              className={`step-btn ${activeRoadmapStep === idx ? "active" : ""}`}
-              onClick={() => setActiveRoadmapStep(idx)}
+              key={item.no}
+              className={activeRoadmap === index ? "active" : ""}
+              onClick={() => setActiveRoadmap(index)}
             >
-              <div className="step-num">{s.step}</div>
-              <div className="step-title">{s.title}</div>
+              <span>{item.no}</span>{item.title}
             </button>
           ))}
         </div>
 
-        <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} perspective={1000} scale={1.01} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="white" glarePosition="all" borderRadius="24px">
-          <div className="roadmap-detail-card">
-            <div>
-              <h3 className="detail-headline">{roadmapSteps[activeRoadmapStep].headline}</h3>
-              <p className="detail-desc">{roadmapSteps[activeRoadmapStep].desc}</p>
-              <div className="detail-deliverables">
-                {roadmapSteps[activeRoadmapStep].deliverables.map((d, dIdx) => (
-                  <span key={dIdx} className="deliverable-pill">
-                    ✓ {d}
-                  </span>
+        <Tilt
+          tiltMaxAngleX={4}
+          tiltMaxAngleY={4}
+          perspective={1000}
+          scale={1.01}
+          transitionSpeed={1200}
+          glareEnable={true}
+          glareMaxOpacity={0.05}
+          borderRadius="16px"
+          className="journey-tilt"
+        >
+          <div className="journey-panel">
+            <div className="journey-number">{roadmap[activeRoadmap].no}</div>
+            <div className="journey-content">
+              <span className="panel-kicker">PHASE {roadmap[activeRoadmap].no} · {roadmap[activeRoadmap].headline}</span>
+              <h3>{roadmap[activeRoadmap].desc}</h3>
+              <div className="journey-items">
+                {roadmap[activeRoadmap].items.map((item) => (
+                  <span key={item}><Check size={13} /> {item}</span>
                 ))}
               </div>
             </div>
-            <div style={{ textAlign: "right" }}>
-              <Link to="/course-details" className="hero-primary-btn" style={{ padding: "12px 20px" }}>
-                Explore Curriculum <ArrowRight size={15} />
-              </Link>
-            </div>
+            <Link to="/course-details" className="panel-link">
+              Explore curriculum <ArrowRight size={15} />
+            </Link>
           </div>
         </Tilt>
       </section>
 
-      {/* 5. Interactive FAQ Accordion */}
-      <section className="faq-section">
-        <div className="section-header-wrap">
-          <span className="section-tag-pill">Got Questions?</span>
-          <h2 className="section-main-title">Frequently Asked Questions</h2>
+      {/* FAQ ACCORDION SECTION */}
+      <section className="faq-section" data-reveal>
+        <div className="section-intro centered">
+          <span className="section-kicker">QUICK ANSWERS</span>
+          <h2>Questions, <em>answered.</em></h2>
         </div>
 
         <div className="faq-list">
-          {faqs.map((f, idx) => {
-            const isOpen = openFaq === idx;
+          {faqs.map(([question, answer], index) => {
+            const open = openFaq === index;
             return (
-              <div key={idx} className={`faq-item ${isOpen ? "open" : ""}`}>
-                <button
-                  className="faq-question-btn"
-                  onClick={() => setOpenFaq(isOpen ? null : idx)}
-                >
-                  <span>{f.q}</span>
-                  {isOpen ? <ChevronUp size={20} color="#ea580c" /> : <ChevronDown size={20} />}
+              <div className={`faq-item ${open ? "open" : ""}`} key={question}>
+                <button onClick={() => setOpenFaq(open ? null : index)}>
+                  <span>{question}</span>
+                  {open ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                 </button>
-                {isOpen && (
-                  <div className="faq-answer">
-                    {f.a}
-                  </div>
-                )}
+                {open && <p>{answer}</p>}
               </div>
             );
           })}
