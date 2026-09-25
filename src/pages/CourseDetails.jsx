@@ -20,7 +20,7 @@ function Courses() {
   const [selectedLevel, setSelectedLevel] = useState("All");
   const [selectedDomain, setSelectedDomain] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 2;
+  const itemsPerPage = 3;
 
   // Track which course has its curriculum expanded
   const [expandedCurriculum, setExpandedCurriculum] = useState(null);
@@ -99,6 +99,52 @@ function Courses() {
         { num: "03", title: "Dynamic Programming & Design", desc: "Memoization, tabulation, high-level system design fundamentals." },
       ],
       careerRoles: ["SDE-1 / SDE-2 (FAANG / Product)", "Competitive Programmer", "Core Systems Engineer"],
+    },
+    {
+      id: 5,
+      title: "AI & Machine Learning Engineering",
+      duration: "16 Weeks",
+      level: "Advanced",
+      levelCategory: "Advanced",
+      domain: "Algorithms",
+      specialization: "Algorithms",
+      skills: ["Python", "PyTorch", "TensorFlow", "Scikit-Learn", "Transformers", "MLOps"],
+      summary: "Build, evaluate, and deploy deep learning models, computer vision systems, and large language models using Python and PyTorch.",
+      capstone: "Capstone: Production Multimodal Recommendation System",
+      modules: [
+        { num: "01", title: "Foundational Math & Supervised ML", desc: "Linear algebra, cost functions, gradient descent" },
+        { num: "02", title: "Deep Learning & Neural Networks", desc: "CNNs, sequence models, transfer learning" },
+        { num: "03", title: "Production Deployment & MLOps", desc: "Model serving, Docker containerization, cloud monitoring" },
+      ],
+      curriculumModules: [
+        { num: "01", title: "Foundational Math & Supervised ML", desc: "Linear algebra, cost functions, gradient descent" },
+        { num: "02", title: "Deep Learning & Neural Networks", desc: "CNNs, sequence models, transfer learning" },
+        { num: "03", title: "Production Deployment & MLOps", desc: "Model serving, Docker containerization, cloud monitoring" },
+      ],
+      careerRoles: ["AI Engineer", "MLOps Engineer", "Machine Learning Scientist"],
+    },
+    {
+      id: 6,
+      title: "Cybersecurity & Cloud Defense",
+      duration: "14 Weeks",
+      level: "Intermediate to Advanced",
+      levelCategory: "Advanced",
+      domain: "Cloud & DevOps",
+      specialization: "Cloud & DevOps",
+      skills: ["Network Security", "Penetration Testing", "Wireshark", "SIEM", "SOC Analysis", "OWASP"],
+      summary: "Master offensive penetration testing, defensive network security, SOC operations, and enterprise zero-trust cloud architectures.",
+      capstone: "Capstone: Enterprise Threat Detection & Automated Incident Response",
+      modules: [
+        { num: "01", title: "Network Architecture & Reconnaissance", desc: "Port scanning, traffic analysis, vulnerability assessment" },
+        { num: "02", title: "Offensive Security & Exploitation", desc: "Web app vulnerabilities, privilege escalation, payloads" },
+        { num: "03", title: "Security Operations & Defense", desc: "Log monitoring, intrusion detection, zero-trust policies" },
+      ],
+      curriculumModules: [
+        { num: "01", title: "Network Architecture & Reconnaissance", desc: "Port scanning, traffic analysis, vulnerability assessment" },
+        { num: "02", title: "Offensive Security & Exploitation", desc: "Web app vulnerabilities, privilege escalation, payloads" },
+        { num: "03", title: "Security Operations & Defense", desc: "Log monitoring, intrusion detection, zero-trust policies" },
+      ],
+      careerRoles: ["Cybersecurity Analyst", "Security Engineer", "Cloud Security Architect"],
     },
   ];
 
@@ -253,7 +299,7 @@ function Courses() {
                     {/* Capstone Box */}
                     <div className="capstone-box">
                       <Award size={16} />
-                      <span>Capstone: {c.capstone}</span>
+                      <span>{c.capstone.startsWith("Capstone:") ? c.capstone : `Capstone: ${c.capstone}`}</span>
                     </div>
 
                     <div className="skills-wrapper">
