@@ -395,3 +395,64 @@
   border-color: var(--color-primary);
   box-shadow: 0 4px 12px rgba(17, 17, 17, 0.15);
 }
+
+/* =========================================
+   EMPTY STATE STYLES
+   ========================================= */
+.courses-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--color-surface, #f8fafc);
+  border: 1px dashed var(--color-border, #cbd5e1);
+  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.courses-empty-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fff7ed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ea580c;
+  margin-bottom: 4px;
+}
+
+.courses-empty-state h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary, #0f172a);
+  margin: 0;
+}
+
+.courses-empty-state p {
+  font-size: 0.95rem;
+  color: var(--color-secondary, #64748b);
+  margin: 0;
+  max-width: 440px;
+  line-height: 1.5;
+}
+
+.reset-filters-btn {
+  margin-top: 10px;
+  background-color: var(--color-primary, #0f172a);
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.reset-filters-btn:hover {
+  background-color: var(--color-accent, #ea580c);
+}

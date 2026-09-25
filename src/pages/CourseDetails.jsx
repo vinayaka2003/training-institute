@@ -12,6 +12,7 @@ import {
   X,
   Send,
   Award,
+  Search,
 } from "lucide-react";
 import "../styles/courses.css";
 
@@ -128,6 +129,12 @@ function Courses() {
     setCurrentPage(1);
   };
 
+  const handleResetFilters = () => {
+    setSelectedLevel("All");
+    setSelectedDomain("All");
+    setCurrentPage(1);
+  };
+
   const toggleCurriculum = (id) => {
     setExpandedCurriculum(expandedCurriculum === id ? null : id);
   };
@@ -210,80 +217,95 @@ function Courses() {
           </div>
         </div>
 
-        {/* Courses Grid */}
-        <div className="courses-grid">
-          {currentCourses.map((c) => {
-            const isCurriculumOpen = expandedCurriculum === c.id;
-            return (
-              <Tilt key={c.id} tiltMaxAngleX={5} tiltMaxAngleY={5} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="white" glarePosition="all" borderRadius="24px">
-                <div className="course-card spotlight-card" onMouseMove={handleMouseMove}>
-                <div>
-                  <div className="card-top">
-                    <span className="level-badge">{c.level}</span>
-                    <span className="duration-badge">
-                      <Clock size={13} />
-                      <strong>{c.duration}</strong>
-                    </span>
-                  </div>
-
-                  <h3 className="course-title">{c.title}</h3>
-                  <p className="course-summary">{c.summary}</p>
-
-                  {/* Capstone Box */}
-                  <div className="capstone-box">
-                    <Award size={16} />
-                    <span>Capstone: {c.capstone}</span>
-                  </div>
-
-                  <div className="skills-wrapper">
-                    {c.skills.map((skill, sIdx) => (
-                      <span key={sIdx} className="skill-pill">
-                        {skill}
+        {/* Courses Grid / Empty State */}
+        {filteredCourses.length === 0 ? (
+          <div className="courses-empty-state">
+            <div className="courses-empty-icon">
+              <Search size={22} />
+            </div>
+            <h3>No programs found matching your filters</h3>
+            <p>
+              Try adjusting your experience level or specialization criteria to find available courses.
+            </p>
+            <button className="reset-filters-btn" onClick={handleResetFilters}>
+              Reset Filters
+            </button>
+          </div>
+        ) : (
+          <div className="courses-grid">
+            {currentCourses.map((c) => {
+              const isCurriculumOpen = expandedCurriculum === c.id;
+              return (
+                <Tilt key={c.id} tiltMaxAngleX={5} tiltMaxAngleY={5} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="white" glarePosition="all" borderRadius="24px">
+                  <div className="course-card spotlight-card" onMouseMove={handleMouseMove}>
+                  <div>
+                    <div className="card-top">
+                      <span className="level-badge">{c.level}</span>
+                      <span className="duration-badge">
+                        <Clock size={13} />
+                        <strong>{c.duration}</strong>
                       </span>
-                    ))}
-                  </div>
+                    </div>
 
-                  {/* Expandable Curriculum Accordion */}
-                  <button
-                    className="curriculum-accordion-btn"
-                    onClick={() => toggleCurriculum(c.id)}
-                  >
-                    <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                      <BookOpen size={15} color="#ea580c" />
-                      {isCurriculumOpen ? "Hide Syllabus Details" : "View Curriculum Modules (3)"}
-                    </span>
-                    {isCurriculumOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-                  </button>
+                    <h3 className="course-title">{c.title}</h3>
+                    <p className="course-summary">{c.summary}</p>
 
-                  {isCurriculumOpen && (
-                    <div className="curriculum-drawer">
-                      {c.modules.map((m, mIdx) => (
-                        <div key={mIdx} className="module-item">
-                          <span className="module-num">M{m.num}</span>
-                          <div>
-                            <div className="module-title">{m.title}</div>
-                            <div className="module-desc">{m.desc}</div>
-                          </div>
-                        </div>
+                    {/* Capstone Box */}
+                    <div className="capstone-box">
+                      <Award size={16} />
+                      <span>Capstone: {c.capstone}</span>
+                    </div>
+
+                    <div className="skills-wrapper">
+                      {c.skills.map((skill, sIdx) => (
+                        <span key={sIdx} className="skill-pill">
+                          {skill}
+                        </span>
                       ))}
                     </div>
-                  )}
-                </div>
 
-                <button
-                  className="course-learn-btn btn-magnetic"
-                  onClick={() => handleOpenEnrollModal(c)}
-                >
-                  Enroll & View Syllabus <ArrowRight size={16} />
-                </button>
-              </div>
-              </Tilt>
-            );
-          })}
-        </div>
+                    {/* Expandable Curriculum Accordion */}
+                    <button
+                      className="curriculum-accordion-btn"
+                      onClick={() => toggleCurriculum(c.id)}
+                    >
+                      <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                        <BookOpen size={15} color="#ea580c" />
+                        {isCurriculumOpen ? "Hide Syllabus Details" : "View Curriculum Modules (3)"}
+                      </span>
+                      {isCurriculumOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                    </button>
+
+                    {isCurriculumOpen && (
+                      <div className="curriculum-drawer">
+                        {c.modules.map((m, mIdx) => (
+                          <div key={mIdx} className="module-item">
+                            <span className="module-num">M{m.num}</span>
+                            <div>
+                              <div className="module-title">{m.title}</div>
+                              <div className="module-desc">{m.desc}</div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <button
+                    className="course-learn-btn btn-magnetic"
+                    onClick={() => handleOpenEnrollModal(c)}
+                  >
+                    Enroll & View Syllabus <ArrowRight size={16} />
+                  </button>
+                </div>
+                </Tilt>
+              );
+            })}
+          </div>
+        )}
 
       {/* Pagination Controls */}
-      {totalPages > 1 && (
+      {filteredCourses.length > 0 && totalPages > 1 && (
         <div className="pagination-container">
           <button
             className="pagination-btn"
