@@ -19,11 +19,8 @@
 
 .eyebrow {
     display: inline-block;
-
     color: var(--color-accent);
-
     font-size: 13px;
-    /* Increased for readability */
     font-weight: 800;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -63,7 +60,6 @@
 
 .hero-main h1 {
     margin: 0;
-
     font-size: clamp(64px, 9vw, 125px);
     line-height: 0.88;
     letter-spacing: -0.065em;
@@ -85,11 +81,8 @@
 
 .hero-side p {
     margin: 0 0 45px;
-
     color: var(--color-secondary);
-
     font-size: 20px;
-    /* Stronger body text for hero */
     font-weight: 400;
     line-height: 1.6;
 }
@@ -98,12 +91,8 @@
     display: inline-flex;
     align-items: center;
     gap: 15px;
-
     padding-bottom: 8px;
-
     border-bottom: 2px solid var(--color-primary);
-    /* Thicker line for emphasis */
-
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
@@ -144,13 +133,11 @@
 .section-top {
     display: grid;
     grid-template-columns: 0.4fr 1fr;
-
     margin-bottom: 65px;
 }
 
 .section-top h2 {
     margin: 0;
-
     font-size: clamp(42px, 5vw, 72px);
     line-height: 0.98;
     letter-spacing: -0.05em;
@@ -158,11 +145,22 @@
 
 .trainers-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--grid-gap);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    width: 100%;
+    align-items: stretch;
+}
+
+.trainers-grid > div {
+    width: 100%;
+    height: 100%;
 }
 
 .trainer-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     cursor: pointer;
     background: #ffffff;
     border-radius: var(--radius);
@@ -182,25 +180,20 @@
 
 .trainer-image-wrap {
     position: relative;
-
+    width: 100%;
     height: 360px;
-
     overflow: hidden;
-
     background: #f8fafc;
+    flex-shrink: 0;
 }
 
 .trainer-image {
     width: 100%;
     height: 100%;
-
     display: block;
-
     object-fit: cover;
     object-position: center 20%;
-
     filter: grayscale(12%);
-
     transition:
         transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
         filter 0.4s ease;
@@ -215,21 +208,16 @@
     position: absolute;
     top: 20px;
     left: 20px;
-
     width: 42px;
     height: 42px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 50%;
-
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-
     color: #ffffff;
     font-size: 13px;
     font-weight: 800;
@@ -240,15 +228,12 @@
     position: absolute;
     right: 20px;
     bottom: 20px;
-
     padding: 10px 18px;
     border-radius: 30px;
-
     background: rgba(17, 17, 17, 0.4);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.15);
-
     color: #ffffff;
     font-size: 11px;
     font-weight: 700;
@@ -260,39 +245,48 @@
 .trainer-info {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-
-    padding: 28px 24px;
+    align-items: center;
+    padding: 24px 22px;
     background: #ffffff;
     position: relative;
     z-index: 2;
+    margin-top: auto;
+    width: 100%;
+    gap: 12px;
+}
+
+.trainer-info > div {
+    min-width: 0;
+    flex: 1;
 }
 
 .trainer-info h3 {
-    margin: 0 0 8px;
-
-    font-size: 24px;
+    margin: 0 0 6px;
+    font-size: 22px;
     font-weight: 800;
     letter-spacing: -0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .trainer-info p {
     margin: 0;
-
     color: var(--color-accent);
-    /* Standout role text */
-
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .arrow {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 300;
     color: var(--color-secondary);
-
+    flex-shrink: 0;
     transition:
         transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
         color 0.4s ease;
@@ -309,9 +303,7 @@
 
 .experience-section {
     padding: 48px max(40px, calc((100% - 1280px) / 2));
-
     background: var(--color-surface);
-
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 48px;
@@ -320,7 +312,6 @@
 
 .experience-title h2 {
     margin: 20px 0 0;
-
     font-size: clamp(45px, 6vw, 78px);
     line-height: 0.95;
     letter-spacing: -0.055em;
@@ -329,13 +320,11 @@
 .stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-
     border-top: 1px solid var(--color-border);
 }
 
 .stat {
     padding: 25px 20px 0;
-
     border-right: 1px solid var(--color-border);
 }
 
@@ -349,9 +338,7 @@
 
 .stat strong {
     display: block;
-
     margin-bottom: 12px;
-
     font-size: clamp(34px, 4vw, 54px);
     letter-spacing: -0.05em;
 }
@@ -362,9 +349,7 @@
 
 .stat p {
     margin: 0;
-
     color: var(--color-secondary);
-
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
@@ -379,7 +364,6 @@
     width: min(100% - 80px, var(--container-width));
     margin: 0 auto;
     padding: var(--section-gap) 0;
-
     display: grid;
     grid-template-columns: 0.7fr 1.3fr;
     gap: 48px;
@@ -387,7 +371,6 @@
 
 .expertise-header h2 {
     margin: 20px 0 0;
-
     font-size: clamp(45px, 6vw, 78px);
     line-height: 0.95;
     letter-spacing: -0.055em;
@@ -397,7 +380,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 20px;
-
     border-top: 1px solid var(--color-border);
     padding-top: 40px;
 }
@@ -408,13 +390,10 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
-
     padding: 30px 15px;
-
     background: #ffffff;
     border-radius: 16px;
     border: 1px solid var(--color-border);
-
     cursor: pointer;
     transition:
         transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -432,7 +411,6 @@
     width: 45px;
     height: 45px;
     object-fit: contain;
-
     transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -442,7 +420,6 @@
 
 .skill-name {
     color: var(--color-primary);
-
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
@@ -459,18 +436,14 @@
     margin: 0 auto 80px;
     padding: var(--section-gap) 40px;
     border-radius: var(--radius);
-
     background: var(--color-primary);
     color: #ffffff;
-
     text-align: center;
 }
 
 .trainers-cta h2 {
     margin: 20px auto;
-
     max-width: 900px;
-
     font-size: clamp(48px, 7vw, 90px);
     line-height: 0.92;
     letter-spacing: -0.06em;
@@ -479,9 +452,7 @@
 .trainers-cta p {
     margin: 25px auto 40px;
     max-width: 600px;
-
     color: #a3a3a3;
-
     font-size: 20px;
     font-weight: 400;
     line-height: 1.6;
@@ -491,19 +462,14 @@
     display: inline-flex;
     align-items: center;
     gap: 20px;
-
     padding: 18px 32px;
-
     background: var(--color-accent);
     color: #111111;
-
     border-radius: 8px;
-
     font-size: 15px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-
     transition:
         transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
         background 0.3s ease,
@@ -544,8 +510,8 @@
     }
 
     .trainers-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 50px 20px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px;
     }
 
     .experience-section {
@@ -573,7 +539,8 @@
     }
 
     .trainers-section {
-        padding: 80px 20px;
+        width: 100% !important;
+        padding: 60px 16px !important;
     }
 
     .section-top {
@@ -585,18 +552,26 @@
     }
 
     .trainers-grid {
-        grid-template-columns: 1fr;
-        gap: 50px;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 36px !important;
+        width: 100% !important;
+    }
+
+    .trainers-grid > div,
+    .trainer-card {
+        width: 100% !important;
+        max-width: 340px !important;
+        margin: 0 auto !important;
     }
 
     .trainer-image-wrap {
         height: 300px;
-        /* Reduced from 430px */
     }
 
     .experience-section {
         padding: 80px 20px;
-
         gap: 50px;
     }
 
@@ -610,7 +585,6 @@
 
     .stat {
         padding: 22px 0;
-
         border-right: none;
         border-bottom: 1px solid var(--color-border);
     }

@@ -23,8 +23,9 @@ const trainers = [
     role: "Java & Backend",
     experience: "9+ Years",
     image:
-      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=85",
   },
+
   {
     name: "Sneha Rao",
     role: "UI/UX Design",
@@ -44,7 +45,7 @@ const trainers = [
     role: "Cyber Security & Systems",
     experience: "8+ Years",
     image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=900&q=85",
+      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=85",
   },
 ];
 
@@ -157,7 +158,20 @@ function Trainers() {
 
         <div className="trainers-grid">
           {currentTrainers.map((trainer, index) => (
-            <Tilt key={trainer.name} tiltMaxAngleX={6} tiltMaxAngleY={6} perspective={1000} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.12} glareColor="white" glarePosition="all" borderRadius="20px">
+            <Tilt
+              key={trainer.name}
+              tiltMaxAngleX={6}
+              tiltMaxAngleY={6}
+              perspective={1000}
+              scale={1.02}
+              transitionSpeed={2000}
+              glareEnable={true}
+              glareMaxOpacity={0.12}
+              glareColor="white"
+              glarePosition="all"
+              borderRadius="20px"
+              style={{ width: "100%", height: "100%" }}
+            >
               <article className={`trainer-card spotlight-card reveal reveal-delay-${(index % 3) + 1}`} onMouseMove={handleMouseMove}>
 
                 <div className="trainer-image-wrap image-hover">
@@ -165,6 +179,7 @@ function Trainers() {
                     src={trainer.image}
                     alt={trainer.name}
                     className="trainer-image"
+                    style={trainer.objectPosition ? { objectPosition: trainer.objectPosition } : undefined}
                   />
 
                   <span className="trainer-number">
