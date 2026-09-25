@@ -97,7 +97,6 @@ body {
 }
 
 .hero-primary-btn:hover,
-.batch-reserve-btn:hover,
 .course-learn-btn:hover {
   background: var(--color-accent);
   box-shadow: none;

@@ -259,7 +259,7 @@ function Classes() {
                     {item.status}
                   </span>
                   <button
-                    className="batch-reserve-btn btn-magnetic"
+                    className="batch-reserve-btn reserve-btn btn-magnetic"
                     onClick={() => handleOpenReservation(item)}
                   >
                     <Users size={16} /> Reserve Seat
